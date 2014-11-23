@@ -2,19 +2,20 @@
 
 function usage {
 	echo
-	echo "./boot [bos|cpm] [2|4] optional space delimited drive 2-4 images"
+	echo "./boot [bos|cpm|vsd] {p|t} {diskimage diskimage ...} # vsd voids p|t"
 	echo
-	echo "e.g.: ./boot bos 2"
+	echo "e.g.: ./boot bos"
 	echo
 	exit 1
 }
 
+EXTRA=""
+PT=""
 CMD=mess64
 if [ -x mess64 ]
 then
 	CMD=./mess64
 fi
-
 
 case "$1" in
 	bos|BOS)
@@ -23,6 +24,10 @@ case "$1" in
 	cpm|CPM)
 		IMG=cpmboot.po
 		;;
+	vsd|VSD)
+		IMG=bosbootvsd.dsk
+		EXTRA="-rs232 null_modem -bitb socket.127.0.0.1:1977"
+		;;
 	*)
 		usage
 		;;
@@ -30,16 +35,20 @@ esac
 shift
 
 case "$1" in
-	4)
-		IMG=$(echo $IMG | sed 's/\./4./')
+	p|P)
+		PT="-rs232 null_modem -bitb printer.txt"
+		shift
 		;;
-	2)
-		;;
-	*)
-		usage
+	t|T)
+		PT="-rs232 null_modem -bitb socket.127.0.0.1:2023"
+		shift
 		;;
 esac
-shift
+
+if [ -z "$EXTRA" ]
+then
+	EXTRA=$PT
+fi
 
 DRIVES=""
 drive=1
@@ -75,8 +84,5 @@ $CMD apple3 \
 	-sl2 applicard \
 	-ramsize 512k \
 	-flop1 $IMG \
-	$DRIVES
-
-#future options
-#-rs232 null_modem -bitb serialout.txt
+	$DRIVES $EXTRA
 

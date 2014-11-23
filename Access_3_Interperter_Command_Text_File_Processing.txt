@@ -1,0 +1,897 @@
+
+WAP /// SIG
+AUGUST 1989
+
+ 
+
+                              ACCESS ///
+
+                Interperter Command Text File Processing
+
+
+
+     To invoke command text file processing, press 'Open-Apple-C' in the
+ACCESS /// terminal mode.  You will then be prompted "Command file name?". 
+Enter the full pathname of the command text file to be executed.  If a valid
+pathname is not entered then you -must- press 'ESCAPE' and then 'RETURN' at
+the "Command file name?" prompt to exit to the ACCESS /// terminal mode.
+     The command text file is a sequential ASCII file that contains commands
+to be processed and text to be transmitted.  A command is indicated by the
+first character of a line begining with an '@' sign.  When the first
+character in a line is -not- an '@' sign then the line of text is transmitted
+as though it was typed from the keyboard.  This includes the ASCII 013 sent
+by the RETURN key! 
+     The command text file is read one line at a time.  The carriage return
+at the end of a line designates the start of a new line character.  To
+terminate command text file processing before the end of a command text file,
+press 'Open-Apple-C' again.  You will then be prompted "Command file ended. 
+Press any key to continue".  Press any key to return control to the ACCESS
+/// terminal mode.
+     If a command text file named 'ACCESS.CMD' is on the boot diskette, it
+will be automatically executed when ACCESS /// is booted.  If you are using
+Catalyst 2.0, the command text file 'ACCESS.CMD' -must- be in the same
+sub-directory as the  Access ///  'SOS.INTERP' file.  This auto-start command
+text file allows customizing of default startup conditions.
+     CAUTION:  The command text files must -not- be locked!!  A SOS error
+will occur if a -locked- command text file is executed by using the Access
+/// 'Open-Apple-C' function key.  You will be prompted "SOS error 4E. 
+Attributes do not permit access attempt.  Press any key to continue".  Press
+any key to return control to the Access /// terminal mode.
+
+Summary of Commands:
+
+Format Commands:
+
+     @CCs       - change default '@' lead-in command character to s
+     @!!s...s   - comment of text s...s
+
+Key Equivalent Commands:
+     
+     @BS        - 233 millisecond break
+     @BL        - 3.5 second break
+     @XA        - transmit answerback
+     @PS        - print screen text to the currently defined recording file
+
+Recording File Control Commands:
+
+     @FT        - filter true
+     @FF        - filter false
+     @RT        - recording true
+     @RF        - recording false
+     @ST        - screen true
+     @SF        - screen false
+     @RNs...s   - change recording file name to s...s
+     @OR        - overwrite an existing file
+
+Flow of Control Commands:
+    
+     @LBssss   - label ssss
+     @JPssss   - jump to label ssss
+ 
+ 
+
+Local Display Control:
+
+     @SS       - save current screen image
+     @RS       - restore previously saved screen image
+     @DIs...s  - display s...s with -no- trailing carriage return
+     @DLs...s  - display line s...s followed by a carriage return
+     @IN       - transmit keyboard input until -ENTER- key is pressed
+     @QQ       - switch interpreter or exit Access /// completely
+
+Waiting Commands:
+
+     @WSnnnnn  - wait nnnnn seconds from 0 to 65535
+     @WThhmm   - wait until clock time hhmm from 0000 to 2400
+     @WDn      - wait until day n from 1 to 7 [Sun=1...Wed=4...Sat=7]
+      
+Protocol Commands:
+
+     @CD       - delay nnn milliseconds between characters from 0 to 255
+     @LD       - delay nnn milliseconds after each line from 0 to 255
+     @PT       - protocol true
+     @PF       - protocol false
+
+Transmitting Commands:
+
+     @DPs...s  - define the current prompt to be s...s
+     @XCs...s  - transmit s...s with -no- trailing carriage return
+     @XFs...s  - chain to a file whose full pathname is s...s
+     @XNs...s  - transmit s...s without waiting for a prompt
+     @XPs...s  - transmit s...s after receiving currently defined prompt
+
+Matching Commands:
+
+     @MSxs...s - for match# x : search for string s...s
+     @MUxc     - for match# x : search until receipt of c
+     @MLxssss  - for match# x : when s...s is found,jump to label ssss
+     @MT       - match true
+     @MC       - match clear
+
+Set-Up Commands:
+
+     @V1       - VT100
+     @V5       - VT52
+     @LT       - linefeed true after carriage return
+     @LF       - linefeed false after carriage return
+     @C7       - 7 bits per character
+     @C8       - 8 bits per character
+     @QT       - XON/XOFF protocol true
+     @QF       - XON/XOFF protocol false
+     @VN       - video normal 
+     @VI       - video inverse
+     @FD       - full duplex
+     @HD       - half duplex
+     @AT       - wrap-around true
+     @AF       - wrap-around false 
+     @XRn      - transmission rate n from 1 to 6    [3=1200....6=9600]
+     @PRn      - transmission parity n from 1 to 5  [1=none...5=space]
+     @TBnn     - tab set at position nn from 1 to 80
+     @TCnn     - tab clear at position from 1 to 80
+     @TE       - tab erase, clears all tabs
+
+     Every command that has a string operand 's...s' can use what is known as
+a numerical designator.  This is how non-printing ASCII control characters
+can be included in a command text file.  If the character following the first
+3 command characters is a single quote [ ' ], then the next three characters
+-must- be digits from 0-9 indicating the decimal value of the ASCII control
+character.  There are -no- space(s) between the first 3 command characters,
+the single quote [ ' ], and the 3 digit decimal value of the ASCII control
+character.  No other text can follow a numerical designator.  ( Example:
+@DI'007 or @XC'013 )
+     If an ASCII control character needs to occur in the middle of a string,
+the only way to do it is to use three commands.  The first command sends the
+string that precedes the ASCII control character, the second command sends
+the decimal value of the ASCII control character, and the third command sends
+the rest of the string.  See pages #141 & #142 of the Apple /// Standard
+Device Drivers Manual for a cross reference table of Decimal to ASCII
+characters and for a table of Apple /// Screen Control Codes. 
+     Example: @DI This line of text is sent to screen in NORMAL text mode
+              @DI'018
+              @DI This line of text is sent to screen in INVERSE text mode
+
+
+------------------------------- Appendix A -------------------------------
+
+
+
+FORMAT COMMANDS:  These commands allow you to modify the lead-in format of a
+command and to include comments in a command text file.
+
+     The @CCs command allows you to change the default '@' lead-in command
+character.  The 's' can be defined either as the ASCII character desired or
+by a single quote followed by a three digit decimal value of the ASCII
+character.  See page# 140 of the Apple /// Standard Device Drivers Manual for
+a cross reference table of Decimal to ASCII characters.  After you have
+changed the lead-in character be sure that you use the new lead-in character
+for the rest of the command text file.  The old lead-in character will not be
+recognized and Access /// will not execute these commands.  There are -no-
+space(s) between the 3 digit '@CC' and the 's' new lead-in character.  (
+Example: @CC$ or @CC'036 )
+     The @!!s...s command allows you to include comments in your command text
+file.  The string following the '@!!' will not be displayed on the Apple ///
+screen or transmitted to the host computer.  There -can- be space(s) between
+the 3 digit '@!!' and the 's...s' comment.  ( Example: @!! This is an example
+of a comment line )
+
+
+------------------------------- Appendix B -------------------------------
+
+
+
+KEY EQUIVALENTS COMMANDS:  These commands allow you to include Access ///
+'Open-Apple' key functions in your command text file.
+
+     The @BS command allows you to send a short break and is the equivalent
+of the 'Open-Apple-b' Access /// key function.  This short break holds the
+transmission line in a zero state for a period of 233 milliseconds   (
+Example: @BS )
+     The @BL command allows you to send a long break and is the equivalent of
+the 'Open-Apple-B' Access /// key function.  This long break holds the
+transmission line in a zero state for a period of 3.5 seconds.  ( Example:
+@BL )
+     The @XA command allows you to transmit the Answerback message that is on
+the Access /// Status Menu.  ( Example: @XA )
+     The @PS command allows you to dump the existing Apple /// screen of text
+to the currently defined recording file.  The @PS command is the equivalent
+of the 'Open-Apple-P' Access /// key function.  Note that the Access /// boot
+diskette -must- have the 'ACS3FONT' character set configured in the
+SOS.DRIVER for the '@PS' command to work!!  ( Example: @PS )
+ 
+ 
+
+------------------------------- Appendix C -------------------------------
+
+
+
+RECORDING FILE COMMANDS:  These commands allow you to define and control the
+use of the recording file.
+
+     The @FT command allows you to turn the recording filter on.  The filter
+removes all ASCII control characters with a decimal value of 031 or less
+except for TAB - ASCII 009 & RETURN - ASCII 013.  When the filter is on,
+Access /// removes control characters sent by the host computer and doesn't
+send them to the recording file.  ( Example: @FT )
+     The @FF command allows you to turn the recording filter off.  When the
+filter is off all characters transmitted by the host computer are sent to the
+recording file.  If you are using a HP plotter to download plots or text,
+then you will want to be sure that the recording filter is off.  This will
+prevent ASCII characters that are needed in the HP-GL graphics language from
+being filtered out.
+     The @RT command allows you to turn on the recording.  Anything that
+Access /// receives goes to the currently defined recording file.  This is
+the equivalent of the Access /// 'Open-Apple-R' key function to toggle the
+recorder on.  Note that the cursor is flashing when in the recording mode.  (
+Example: @RT )
+     The @RF command allows you to turn off the recording.  This stops Access
+/// from sending data to the currently defined recording file.  This is the
+equivalent of the Access /// 'Open-Apple-R' key function to toggle the
+recorder off.  Note that the cursor stops flashing when the recorder is
+turned off.  ( Example: @RF )
+     The @ST command allows incoming data to go to the Apple /// screen.  If
+the recording is on,the incoming data is also sent to the currently defined
+recording file.  ( Example: @ST )
+     The @SF command does -not- allow incoming data to go to the Apple ///
+screen.  If the recording is on,the incoming data is still sent to the
+currently defined recording file.  If the recording is off,Access /// will
+still receive incoming data but will not display it on the Apple /// screen
+or save it to the currently defined recording file.  ( Example: @SF )
+     The @RNs...s command allows you to change the name of the recording
+file.  This allows you to use more than one recording file for different
+types of information.  If the recording file that is specified already exists
+on the disk,you must immediately preceed the @RNs...s command with an @OR
+command so you can over write the existing recording file.  If any error
+occurs in opening the new recording file, then the old file recording file is
+restored and no error message is given.  The 's...s' file name is the full
+pathname of the recording file.  There are -no- space(s) between the 3 digit
+'@RN' and the 's...s' file pathname.  ( Example:
+@RN.PROFILE/CATALYST/AC3.DIR/MAIL.TXT or @RN.D2/MAIL.TXT )
+     The @OR command allows you to overwrite an existing file.  The @OR must
+immediately precede the @RNs...s command.  The @OR command will work only
+when the next line in the command text file is the @RNs...s command.  When
+the @OR command immediately precedes the @RNs...s command,Access /// opens
+the file and writes over the current contents.  If any error occurs in
+opening the new recording file, then the old file recording file is restored
+and no error message is given.
+     Example: @OR
+              @RN.PROFILE/CATALYST/AC3.DIR/MAIL.TXT
+
+
+-------------------------------  Appendix D -------------------------------
+
+
+FLOW of CONTROL COMMANDS:  These commands allow you to place labels in the
+command text file to define sections or subroutines.  The normal execution of
+a command text file procedes down one line at a time from the beginning to
+the end of the text file.  These labels let you jump to sections or
+subroutines in the command text file.
+
+     The @LBssss command allows you to assign a label 'ssss' to a section of
+the command text file.  A label is an address to jump or branch to.  This
+address usually defines a subroutine or a related sequence of instructions. 
+The address 's...s' can be up to 4 characters long. There are -no- space(s)
+between the 3 digit '@LB' and the 'ssss' label address.  ( Example: @LB1034
+or @LBSTRT )
+     The @JPssss command allows you to jump to a specified label 'ssss'.  You
+can jump to a label defined earlier in the command text file as long as it is
+no more than 20 labels back.  This type of label matching is called a
+backward reference.  If the label 'ssss' isn't one of the last 20 labels read
+in, then Access /// assumes the label match is a forward reference.  The
+command text file is then read from the present @JPssss command line to the
+command text file's EOF for a label match.  If no matching label is found
+then the command text file's EOF occurs.  This causes the command text file
+to be closed and execution of the command text file is terminated.  Access
+/// then returns to the terminal mode.  There are -no- space(s) between the 3
+digit '@JP' and the 'ssss' label.  ( Example: @JP1034 or @JPSTRT )
+
+
+------------------------------- Appendix E -------------------------------
+
+
+
+LOCAL DISPLAY CONTROL COMMANDS:  These commands allow you to control how the
+information is displayed on the Apple /// screen.  See page# 141 of the Apple
+/// Standard Device Drivers Manual for a table of Apple /// Screen Control
+Codes.
+
+     The @SS commmand allows you to save the current Apple /// screen image
+and the current cursor position in RAM.   By using the @DIs...s & @DLs...s
+commands to display prompts on the Apple /// screen, the @SS command is then
+used to save this Apple /// screen image.  ( Example: @SS )
+     The @RS command allows you to restore the Apple /// screen image &
+cursor position most recently saved by an @SS command.  If an Apple ///
+screen image has not been saved since the command text file began executing,
+the @RS command then clears the Apple /// screen.  ( Example: @RS )
+     The @DIs...s  command allows you to display the text 's...s' on the
+Apple /// screen  with -no- trailing ASCII 013 return character.  If you want
+to include a non-printing ASCII control character,the 3 digit '@DI' must be
+followed by a single quote and then a 3 digit decimal equivalent of the ASCII
+control character.  There -can- be space(s) between the 3 digit '@DI' and the
+'s...s' text.
+     Example: @!!This example the cursor will remain at the ':' character
+              @!!Then the ASCII bell 007 will ring once.            
+              @DIENTER LOGON PASSWORD :
+              @DI'007 
+     The @DLs...s command allows you to display the text 's...s' on the Apple
+/// screen followed by an ASCII 013 return character.  If you want to include
+a non-printing ASCII control character,the 3 digit '@DL' must be followed by
+a single quote and then a 3 digit decimal equivalent of the ASCII control
+character.  There -can- be space(s) between the 3 digit '@DL' and the 's...s'
+text.
+     Example: @!!This example leaves cursor at the beginning of next line
+              @!!The ASCII bell 007 will ring once and adds a blank line.
+              @DLENTER LOGON PASSWORD :
+              @DL'007
+     The @IN command causes Access /// to transmit all succeeding input from
+the Apple ///'s keyboard until you press the 'ENTER' key on the numeric key
+pad.  By using the 'ENTER' key to terminate data input, ASCII 013 carriage
+returns can be included in text sent to the host computer!
+     Example: @!!The lines below leaves the cursor at the ':' character
+              @!!The ASCII bell 007 will ring once & wait for data entry.
+              @!!Data entry is terminated by pressing 'ENTER'
+              @DIENTER LOGON PASSWORD :
+              @DI'007
+              @IN
+
+
+------------------------------- Appendix F -------------------------------
+
+
+
+WAITING COMMANDS:  These commands allow you to delay execution of your
+command text file.  The delay can range from from one second to one week.
+
+     The @WSs...s command allows you to define a delay or pause in the
+command text file execution.  The second delay 's...s' can vary from 1 to
+65536 seconds.  There are -no- space(s) between the 3 digit '@WS' and the
+'s...s' seconds.  ( Example: @WS2 or @WS2400 )
+     The @WThhmm command allows you to define a delay to a specific time. 
+The time is entered under the 2400 hr clock system.  Execution continues with
+the next sequential command line when the time returned by the SOS call is
+the same as 'hhmm'.  If the characters returned by the SOS call are null,
+then no system clock is installed and execution continues immediately.  The
+time delay 'hhmm' can vary from 0000 to 2400.  There are -no- space(s)
+between the 3 digit '@WT' and the 'hhmm' 2400 hr time.  ( Example: @WT1320 or
+@WT0800 )
+     The @WDs command allows you to define a delay to a specific day of the
+week.  Execution continues with the next sequential command line when the day
+character returned by the SOS call is the same as 's'.  If the character
+returned by the SOS call is null, then no system clock is installed and
+execution continues immediately.  The day delay 's' can range from 1 to 7. 
+Where 1= Sun,2= Mon,3= Tues,4= Wed,5= Thurs,6= Friday,and 7= Sat.  There are
+-no- space(s) between the '@WD' command and the 's' day of week.  ( Example:
+@WD6 better known as TGIF! )
+
+
+------------------------------- Appendix G -------------------------------
+
+
+
+PROTOCOL COMMANDS:  These commands allow you to define transmission protocol
+parameters of character and line delay.  These character and line delays
+accommodate  remote computers that perform processing after each character or
+each line.  These remote computers are not set up for keyboard entry of data
+at rates of 100-150 keystrokes or characters per second!
+
+     The @CDs...s command allows you to set the transmission delay between
+characters.  The 's...s' character delay can range from 0 to 255
+milliseconds.  If not specified the default is 0 milliseconds.  There are
+-no- space(s) between the '@CD' command and the 's...s' character delay.  (
+Example: @CD10 or @CD225 )
+     The @LDs...s command allows you to set the transmission delay after each
+line transmission.  The 's...s' line delay can range from 0 to 255
+milliseconds.  If not specified the default is 0 milliseconds.  There are
+-no- space(s) between the 3 digit '@LD' and the 's...s' line delay.  (
+Example: @LD1 or @LD125 )
+     The @PT command allows you to reset the transmission protocol to the
+last @CDs...s & @LDs...s command values.  This allows you to switch from a
+character delay of 0 milliseconds & line delay of 0 milliseconds to the last
+@CDs...s & @LDs...s command values.  ( Example: @PT )
+     The @PF command allows you to reset the transmission protocol from the
+present @CDs...s & @LDs...s command values to a character delay of 0
+milliseconds and a line delay of 0 milliseconds.  ( Example: @PF )
+
+
+------------------------------- Appendix H -------------------------------
+
+
+
+TRANSMITTING COMMANDS:  These commands allow you to control the data
+transmission from a command text file.
+
+     The @DPs...s command allows you to define the default prompt
+character(s).  The prompt 's...s' is a string of one or more characters. 
+Some host computer text editors will only accept input following a certain
+prompt.  The @XPs...s command waits for this prompt before transmitting it's
+'s...s' text.  There are -no- space(s) between the three digit '@DP' command
+and the 's...s' prompt.  ( Example: @DP> or @DP--> ) 
+     The @XCs...s command allows you to transmit characters with -no-
+trailing ASCII 013 return character.  This is similar to the @DIs...s
+command.   The difference is that the @XCs...s command transmits text from
+the Apple /// screen while the @DIs...s command writes to the Apple ///
+screen.  There are -no- space(s) between the '@XC' command and the 's...s'
+text.  ( Example: @XCTHIS IS A TEST TRANSMISSION )
+     The @XFs...s command allows you to chain to another command text file or
+to transmit one file from within another.  When the command text file chained
+to reaches it's EOF mark, the execution of the calling file resumes at the
+next command instruction following the @XFs...s command.  Chaining command
+text files can be nested to any level,but the return link is saved only to
+the most recent calling command text file.  The file name 's...s' is the full
+pathname of the command text file.  There are -no- space(s) between the 3
+digit '@XF' and the 's...s' file pathname.  ( Example:
+@XF.PROFILE/CATALYST/AW3.DIR/MEMO.TXT or @XF.D2/MEMO.TXT )
+     The @XNs...s command allows you to transmit the 's...s' text or the next
+line in the command text file without waiting for the default prompt.  This
+is the default transmission mode and is turned off by an @XP command.  There
+are -no- space(s) between the 3 digit '@XN' and the 's...s' text.  ( Example:
+@XNTRANSMIT IMMEDIATELY )
+     The @XPs...s command allows you to transmit the 's...s' text or the next
+line in the command text file upon receipt of the prompt character(s) defined
+by the @DPs...s command.  If the next line is a command line then Access ///
+executes it without waiting for the @DPs...s command prompt.  There are -no-
+space(s) between the 3 digit '@XP' and the 's...s' text.  ( Example:
+@XPTRANSMIT UPON RECEIVING DEFAULT PROMPT )
+
+
+------------------------------- Appendix I -------------------------------
+
+
+
+MATCHING COMMANDS:  These commands allow you to create a Match Set to search
+for up to four simultaneous matches of data or text strings.  Each of the
+four matches will specify three types of information.  1) What string of data
+or text to search for.  2) What to do when the string of data or text is
+found.  3) When to stop searching for the string of data or text.  Each match
+for a string of data or text continues until either the match is found or the
+boundary character has occured.  The boundary character is the 'When to stop
+searching for the string of data or text' character match.  The same boundary
+character can be used for more than one match.  However, when the boundary
+character is found for a particular match, Access /// clears -all- match
+specifications using this boundary character.  Once a match is defined it
+remains defined until another match specification command is encountered or
+the @MC match clear command occurs.  This permits matching for the same
+string to be invoked by merely repeating the @MT match true command.  If all
+three types of information are not specified for each match then Access ///
+will ignore that particular match.
+ 
+     The @MSxs...s command allows you to search for a match to a particular
+string of text 's...s'.  The match number 'x' ranges from 1 to 4.  A maximum
+of four simultaneous strings may be searched for during any particular Match
+Set.  There are -no- space(s) between the 3 digit '@MS', the 1 digit 'x'
+match #, and the 's...s' string of text.  The 'x' of the @MSxs...s command
+-must- correspond with the 'x' of the @MUxc and @MLxssss commands below.  (
+Example: @MS1ENTER PASSWORD: )
+     The @MUxc command allows you to define when to -stop- searching for the
+string of text 's...s' defined in the corresponding @MSxs...s command.  The
+search for string 's...s' stops when the boundary character 'c' is received. 
+Note that the boundary condition is a -single- character.  There are -no-
+space(s) between the 3 digit '@MU', the 1 digit 'x' match #, and the 1 digit
+'c' boundary character.  The match number 'x' ranges from 1 to 4.  A maximum
+of four simultaneous boundary characters may be searched for during any
+particular Match Set.  The 'x' of the @MUxc command -must- correspond to the
+'x' of the @MSxs...s and @MLxssss commands.
+     Example: @MS1ENTER PASSWORD:
+              @ML1PSWD
+              @MU1>
+     The @MLxssss command allows you to jump to a label or subroutine 'ssss'
+when the string of text 's...s' from the corresponding @MSxs...s command is
+matched.  The match number 'x' ranges from 1 to 4.  A maximum of four
+simultaneous labels are defined for any particular Match Set.  There are -no-
+space(s) between the 3 digit '@ML', the 1 digit 'x' match #, and the 'ssss'
+label.  The 'x' of the @MLxssss command -must- correspond to the 'x' of the
+@MSxs...s and the @MUxc commands.
+     Example: @MS1ENTER PASSWORD
+              @ML1PSWD
+     The @MT command allows you to start searching for strings 's...s' after
+all the match conditions have been set.  The @MT command does -not- have a
+'x' match number.  ( Example: @MT )
+     The @MC command allows you to clear -all- previous match specifications.
+If the @MC command is not used then any previous match specifications that
+were not cleared will become active when the next @MT command is executed. 
+The @MC does -not- have a 'x' match number.  ( Example: @MC )
+
+
+------------------------------- Appendix J -------------------------------
+
+
+SETUP COMMANDS:  These commands allow you to set up the the options on the
+'Access /// Set Up Menu' through a command text file.
+
+     @V1   - Set ANSI mode
+     @V5   - Set VT52 mode
+     @LF   - Do -not- send LF after CR
+     @LT   - Send LF after CR
+     @C7   - 7 bits per character
+     @C8   - 8 bits per character
+     @QT   - Enable XON/XOFF
+     @QF   - Disable XON/XOFF
+     @VN   - Normal video
+     @VI   - Inverse video
+     @FD   - Full duplex
+     @HD   - Half duplex
+     @AF   - No wraparound
+     @AT   - Wraparound
+     @XRn  - Transmission rate n from 1 to 6
+             1 - 110  baud
+             2 - 300  baud
+             3 - 1200 baud
+             4 - 2400 baud
+             5 - 4800 baud
+             6 - 9600 baud
+     @PRn  - Transmission parity n from 1 to 5
+             1 - none
+             2 - odd
+             3 - even
+             4 - mark
+             5 - space
+     @TBnn - Tab set at position nn from 1 to 80
+     @TCnn - Tab clear at position nn from 1 to 80
+     @TEnn - Tab erase or clear all tabs
+
+
+------------------------------- Appendix K -------------------------------
+
+
+
+TYMNET AUTOMATIC LOG-ON COMMAND TEXT FILE:
+
+@!!
+@!!
+@!!
+@!! These lines that start with the @!! are comment lines, and are -NOT-
+@!! sent to the Apple ///'s screen or transmitted to the host computer.
+@!!
+@!! }}}}}}}------------>  Automatic Log-On via TYMNET  <------------{{{{{{{
+@!!
+@!!
+@!! }}}}}}}------------>    By Cupertino Black Hole    <------------{{{{{{{
+@!!
+@!!
+@!!
+@!! Here we set up the Access /// 'SET UP MODE' from a command text file.
+@!! V1  - Set ANSI mode
+@!! LF  - Do NOT send LF after CR
+@!! C8  - 8 bits per character
+@!! QT  - Enable XON/XOFF
+@!! VN  - Normal video
+@!! FD  - Full duplex
+@!! AF  - No wraparound
+@!! XR3 - Speed:  1200
+@!! PR3 - Parity: EVEN
+@!!
+@!! -------------------------------------------- Set Up Mode Menu ---------
+@V1
+@LF
+@C8
+@QT
+@VN
+@FD
+@AF
+@XR3
+@PR3
+@!!
+@!!
+@!!
+@!! Here we send a string of text to the Hayes Modem as though it was
+@!! typed from the keyboard.  Note that there is -NO- @!! before the
+@!! string of text to be transmitted to the Hayes Modem.
+@!!
+@!! -------------------------------------------- Dial Using Hayes Modem ---
+<------------ ENTER TYMNET PHONE # HERE { ATDT 988-8762 } -------((((((((((
+@!!
+@!!
+ 
+ 
+@!!
+@!! Here we specify information needed for Match Set #1.  First we clear
+@!! -all- previous match specifications with the '@MC' command.  Then
+@!! three types of information -must- be specified for Match Set #1.
+@!!      1) What string of data or text to search for.
+@!!      2) What to do when the string of data or text is found.
+@!!      3) When to stop searching for the string of data or text.
+@!! The '@MS1CONNECT' command searches for the string of text 'CONNECT'.
+@!! The '@ML1STRT' command jumps to the label 'STRT' when the string of
+@!! text 'CONNECT' is found.  The '@MU1^' command stops searching for
+@!! the string of text 'CONNECT' when the '^' boundary character is
+@!! found.  The '@MT' command -starts- the search for the string of text
+@!! 'CONNECT', now that all three types of information for Match Set #1 
+@!! have been specified.  If the search for the string of text 'CONNECT'
+@!! is unsuccessful then Match Set #1 falls through to the '@JPERRS'
+@!! command.  This causes the command text file to jump to the label
+@!! 'ERRS' which is a subroutine for error messages.
+@!!
+@!! -------------------------------------------- Begin Match Set #1 -------
+@MC
+@MS1CONNECT
+@ML1STRT
+@MU1^
+@MT
+@JPERRS
+@!! -------------------------------------------- End Match Set #1 ---------
+@!!
+@!!
+@!!
+@!! Here is the section or subroutine of the command text file labeled
+@!! 'STRT'.  This is where the command text file will jump to after
+@!! successfully matching the string of text 'CONNECT' for Match Set #1.
+@!!
+@LBSTRT
+@!!
+@!!
+@!!
+@!! Here we send the decimal control character 028 to the  Apple /// screen
+@!! to Clear the Viewport.  Note that the Control Character is sent
+@!! -without- a trailing carriage return by using the '@DIs...s' command.
+@!! See page #141 of the Apple /// Standard Device Drivers Manual for 
+@!! Screen Control Codes.
+@!!
+@!! -------------------------------------------- Clear Viewport -----------
+@DI'028
+@!!
+@!!
+@!!
+@!! Here we send the decimal control character 018 to the Apple /// screen
+@!! to Set Inverse Text.  Note that the Control character is sent -without-
+@!! a trailing carriage return by using the '@DIs...s' commmand.  Also note
+@!! that the '@DL' command below has 76 spaces following it!!!!!  This
+@!! gives a solid inverse line on the Apple /// screen.  See page #141 of
+@!! the Apple  /// Standard Device Drivers Manual for Screen Control Codes.
+@!!
+@!! -------------------------------------------- Set Inverse Text ---------
+@DI'018
+@DL                                                                          
+
+@!!
+@!!
+@!!
+@!! Here we send the following text to the Apple /// Screen: 23 inverse
+@!! spaces -without- a trailing carrage return by using the '@DIs...s'
+ 
+ 
+@!! command.  Then 3 inverse spaces,Automatic Log-On via TYMNET,23 inverse
+@!! spaces, and a trailing carriage return are sent by using the '@DLs...s'
+@!! command.  Finally 76 inverse spaces are sent with a trailing carriage
+@!! return by using the '@DLs..s' command. 
+@!!
+@!! -------------------------------------------- Insert 23 Spaces ---------
+@DI                       
+@DL   Automatic Log-On via TYMNET                       
+@DL                                                                          
+
+@!!
+@!!
+@!!
+@!! Here we send the decimal control character 017 to the Apple ///
+@!! Screen to Set Normal Text.  Note that the control character is sent
+@!! -without-  a trailing carriage return by using the '@DIs...s' command.
+@!! See page #141 of the Apple /// Standard Device Drivers Manual for
+@!! Screen Control Codes.
+@!! 
+@!! -------------------------------------------- Set Normal Text ----------
+@DI'017
+@!!
+@!!
+@!!
+@!! Here we send 8 blank lines to the Apple /// Screen.  Note that the
+@!! blank lines are sent with a trailing carrriage return by using the
+@!! '@DLs...s' command.
+@!!
+@!! -------------------------------------------- Insert 08 Lines ----------
+@DL
+@DL
+@DL
+@DL
+@DL
+@DL
+@DL
+@DL
+@!!
+@!!
+@!!
+@!! Here we set the character and line delay to 1 millisecond.  This is
+@!! done in a command text file because host computers don't expect someone
+@!! to be able to type as fast as Access /// can send characters.  The host
+@!! computer can not tell the difference between Access /// sending
+@!! characters and when you are typing on the Apple /// keyboard!!!!
+@!!
+@!! -------------------------------------------- Set Line & Char Delay ----
+@CD1
+@LD1
+@!!
+@!!
+@!!
+@!! Here we specify information needed for Match Set #2.  First we clear
+@!! -all-  previous match specifications with the '@MC' command.  Then
+@!! three types of information -must- be specified for Match Set #2.
+@!!      1) What string of data or text to search for.
+@!!      2) What to do when the string of data or text is found.
+@!!      3) When to stop searching for the string of data or text.
+@!! The '@MS1x' & '@MS2please' commands simultaneously search for their
+@!! respective string of text 'x' & 'please'.  The '@ML1LOG1' & '@ML2LOG1'
+@!! commands jump to the label 'LOG1' when their respective string of text
+@!! 'x' or 'please' are found.  The '@MU1K' & '@MU2R' commands stop
+@!! searching for their respective string of text 'x' or 'please' when the
+@!! respective 'K' or 'R' boundary character is found.  The '@MT' command
+@!! -starts- a simultaneous search for the strings of text 'x' & 'please',
+@!! now that all three types of information for Match Set #2 have been
+@!! specified.  If the search for the string of text 'x' or 'please' is
+@!! unsuccessful then Match Set #2 falls through to the '@JPERRS' command.
+@!!  This causes the command text file to jump to the label 'ERRS' which
+@!! is a subroutine for error messages.
+@!!
+@!! -------------------------------------------- Begin Match Set #2 -------
+@MC
+@MS1x
+@MS2please
+@ML1LOG1
+@ML2LOG1
+@MU1K
+@MU2R
+@MT
+@JPERRS
+@!! -------------------------------------------- End Match Set #2 ---------
+@!!
+@!!
+@!!
+@!! Here is the section or subroutine of the command text file labeled 
+@!! 'LOG1'.  This is where the command text file will jump to after 
+@!! successfully matching the string of text 'x' or 'please' from the
+@!! Match Set #2.  The '@XCA' command below transmits the character 'A'
+@!! to the host computer -without- a trailing carriage return.
+@!!
+@LBLOG1
+@XCA
+@!!
+@!!
+@!!
+@!! Here we specify information needed for Match Set #3.  First we clear
+@!! -all- previous match specifications with the '@MC' command.  Then three
+@!! types of information -must- be specified for Match Set #3.
+@!!      1) What string of data or text to search for.
+@!!      2) What to do when the string of data or text is found.
+@!!      3) When to stop searching for the string of data or text.
+@!! The '@MS1log in:' & '@MS2user name:' commands simultaneously search for
+@!! their respective string of text 'log in:' & 'user name:'.  The
+@!!'@ML1LOG2' & '@ML2LOG@' commands jump to label 'LOG2' when their
+@!! respective string of text 'log in:' or 'user name:' are found.  The
+@!! '@MU1:' & '@MU2:' commands stop searching for their respective string
+@!! of text 'log in:' and 'user name:' when the ':' boundary character is
+@!! found.  The '@MT' command -starts- a simultaneous search for the stings
+@!! of text 'log in:' and 'user name:', now that all three type of 
+@!! information for Match Set #3 have been specified.  If the search for
+@!! the string of text 'log in:' or 'user name:' is unsuccessful then Match
+@!! Set #3 falls through to the '@JPERRS' command.  This causes the command
+@!! text file to jump to the label 'ERRS' which is a subroutine for error
+@!! messages.
+@!! 
+@!! -------------------------------------------- Begin Match Set #3 -------
+@MC
+@MS1log in:
+@MS2user name:
+@ML1LOG2
+@ML2LOG2
+@MU1:
+@MU2:
+@MT
+@JPERRS
+@!! -------------------------------------------- End Match Set #3 ---------
+@!!
+@!!
+@!!
+@!! Here is the section or subroutine of the command text file labeled
+@!! 'LOG2'.  This is where the command text file will jump to after
+@!! successfully matching the string of text 'log in:' or 'user name:'
+@!! from Match Set #3.
+@!!
+@LBLOG2
+@!!
+@!!
+@!!
+@!! Here we send a string of text to the host computer as though it was
+@!! typed from the keyboard.  Note that there is -NO- @!! before the string
+@!! of text.  The '@JPSTOP' command below jumps to a label 'STOP' which is
+@!! a subroutine to exit or terminate the command text file.
+@!!
+@!! -------------------------------------------- Tymnet Service Name ------
+<------------ ENTER TYMNET SERVICE HERE { DOW1 } ----------------((((((((((
+@JPSTOP
+@!!
+@!!
+@!!
+@!! Here is the section or subroutine of the command text file labeled
+@!! 'ERRS'.  This is where the command text file will jump to if it
+@!! is unsuccessful in matching the string of text for Match Set #1,
+@!! Match Set #2, or Match Set #3.  This subroutine displays the following
+@!! text on the Apple /// screen.  Two blank lines with trailing carriage
+@!! return.  Then 13 spaces,Incorrect Response From Host Computer During
+@!! Log-on with a trailing carriage return.  Then 18 spaces,You May Now
+@!! Attempt to Manually Log-On, with a trailing carriage return.  This is
+@!! followed by a blank line.  Note that the text was sent to the Apple ///
+@!! Screen with trailing carriage returns by using the '@DLs...s' command.
+@!!
+@LBERRS
+@DI'007
+@WS1
+@DI'007
+@DL
+@DL
+@DL             Incorrect Response From Host Computer During Log-On
+@DL                  You May Now Attempt to Manually Log-On.
+@DL
+@WS10
+@!!
+@!!
+@!!
+@!! Here is the section or subroutine of the command text file labeled
+@!! 'STOP'.  The function of this subroutine is to clear the Apple ///
+@!! screen, beep, and print the inverse text '---------- Access ///
+@!! Terminal Emulator Mode ----------' at the top of the Apple /// screen.
+@!! This is where the command text file will jump to when the command text
+@!! file is ready to terminate.  After the '@DI'005' command line is read
+@!! the command text file -EOF- mark occurs. This 'End of File' mark causes
+@!! the command text file to be closed and  execution of the command text 
+@!! file is terminated.  Access /// then returns to the terminal mode for
+@!! keyboard entry.
+@!!
+@!! -------------------------------------------- Exit Command Text File ---
+@LBSTOP
+@WS1
+@!! -------------------------------------------- Clear Viewport -----------
+@DI'028
+@!! -------------------------------------------- Set Screen True ----------
+@ST
+@!! -------------------------------------------- Set Beep -----------------
+@DI'007
+@!! -------------------------------------------- Set Inverse Text ---------
+@DI'018
+@DL           ---------- Access /// Terminal Emulator Mode ----------      
+@!!
+@!! -------------------------------------------- Set Normal Text ----------
+@DI'017
+@!! -------------------------------------------- Set Cursor On ------------
+@DI'005
+~L
+
+------------------------------- Appendix L -------------------------------
+
+
+
+Installing Access /// Interpreter on Profile:
+
+     The Access /// Interpreter can be installed on the Profile hard disk
+drive by using an interpreter switcher like Catalyst 2.0 .  First use the
+System Utilities to create a Profile subdirectory called
+'.PROFILE/CATALYST/AC3.DIR'.  Then copy all the files, except 'SOS.KERNEL' &
+'SOS.DRIVER', from your original Access /// boot diskette to the Profile
+subdirectory '.PROFILE/CATALYST/AC3.DIR'.  Then use the Catalyst Editor to
+add a new program entry.  This is done by merely selecting the entry you want
+the new program to precede using the up and down arrows.  Then you press the
+key 'A'.  You will then be asked for the values of nine parameters listed
+below.  Enter as follows :
+
+     1. Display Name: Access ///
+     2. Interpreter Path: .PROFILE/CATALYST/AC3.DIR/SOS.INTERP
+     3. Extra Drivers: .PARALLEL,.RS232
+     4. Character Set Path: .PROFILE/CATALYST/AC3.DIR/ACS3FONT
+     5. Screen: Default
+     6. Keyboard Path: Default
+     7. Initial Prefix: .PROFILE/CATALYST/AC3.DIR
+     8. Max Files Allowed Open: 0
+     9. Program Path:
+
+     Note that you -must- use the 'ACS3FONT' character set and -not- the
+standard 'SHOLES' character set in the 'Character Set Path' .  When all nine
+parameters have been entered you are asked if they are all OK.  If they are
+correct,enter 'Y' and you are returned to the Catalyst Editor Menu.  Then
+exit Catalyst Editor Menu and update Interpreter using option #5.
+     If you have a command text file named 'ACCESS.CMD' in the subdirectory
+'.PROFILE/CATALYST/AC3.DIR', then this command text file will be
+automatically executed when you select Access /// from the Catalyst 2.0
+program menu.  Also you should make sure that the recording file name used in
+the Access /// 'SET UP MODE' menu has the full pathname
+'.PROFILE/CATALYST/AC3.DIR/s...s' .  Where 's...s' is the recording file
+name.  Failure to do this will cause cluttering up of other Profile
+subdirectories with command text files & recording files !!
+
+(NOTE: This program can just as easily be installed on Selector...just
+follow the manual's instructions.)

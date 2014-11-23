@@ -1,0 +1,278 @@
+
+
+Access 3270
+
+By Weber Baker
+
+Transcribed (with a few additional notes) 
+by Dave Ottalini
+from The /// Magazine of February, 1987
+
+
+     I recently encountered a situation where I found full IBM 3278 terminal
+emulation was a plus in accessing the computer at North Texas State University
+through the phone lines.  It was recommended that I get some program or another
+for the IBM-PC, "because it has true 3270 emulation."  I managed to keep from
+cursing at the word IBM-PC and resolved to find something for my /// that could
+fill the bill.  Looking through my old copy of "Will Somebody Please Tell Me
+What An Apple // Can Do?", I found reference to Apple Access 3270.  According
+to the description, this was a program designed to give complete 3270 terminal
+emulation using a device called an Apple 3270 Cluster Controller. According to
+the book, it required this device.
+     Not trusting what I had read, I called Sun Remarketing and they seemed to
+think it would work with a modem alone.  So I shelled out $75.00 on it figuring
+I might learn something and get earlier access.
+     Access 3270 has turned out to be a true surprise in some respects.  It has
+all of the features described in the manual and will do things the manual
+flatly says cannot be done!  The entire kit included an understandable manual,
+a program disk and a set of keyboard templates for PFK keys (more on that
+later).  The manual is reasonable clear, but there are parts of it that are not
+quite true.
+     The first thing I discovered was that the needed Apple Cluster Controller
+was not quite as integral a part of this system as the manual would have you
+believe.
+     For those who may not know, there is more than one way to represent
+information in a computer.  In essence, all computers recognize patterns of
+bits, (1's and 0's).  The combinations of 1's and 0's create codes, like the
+dots and dashes of Morse code, which represents numbers, letters and special
+characers like commas and periods.  One code, the Extended Binary Coded Decimal
+Interchange Code (EBCDIC) was develped by IBM.  This is an eight bit code,
+which means that eight bits are used to repreent all the characters (very
+convenient fortape drives that use 8 track tapes like IBMs do).  It is possible
+to represent 256 characters numbered 0-255 with this code.
+     American Standard Code for Information Exchange (ASCII) was developed with
+the intent of creating a code to be used by all computers.  ASCII was
+originally a seven bit code, which allowed for only 128 patterns numbered
+0-127.  However, most implementations are not based on an 8 bit version of
+ASCII.  Most micro computers use the 8 bit ACII.
+     By now you have asked what does this have to do with a piece of hardware
+called an Apple Cluster Controller, or protocol converter?  Simply stated, it
+all boils down to this:  My Apple /// speaks ASCII, the NAS-8040 I want to
+access speaks EBCDIC.  For example, the letter "A" in ASCII has a binary ASCII
+code of 0100001 (HEX 42); which is 11000001 (Hex CO) in EBCDIC.  What is needed
+is a translator.  The Apple Cluster Controller is a protocol converter.  There
+are other brands with different names, ut they are all basically translators
+between EDCDIC and ASCII.  And unlike modems, one is all that is needed.  Most
+large IBM-like computer shops which support micro computer or dial-up terminal
+users have such converters at their end; so you probably do not need one.
+     However, there is one (rather minor) disadvantage to this.  Like Apple
+Access /// (interp version), Access 3270 supports a high level command language
+which allows you to write command files which cause Access 3270 to function as
+if a human were at he keyboard working.  Included in the Access 3270 version
+of this language is a special command not found in regular Access ///; the @ACC
+command.  This command is specifically designed to send messages to an Apple
+Cluster Controller. If you don't have one in the connection, this command is
+useless.
+     The second discovery that I made was that there is a rather foolish
+mistatement in the manual that says Access 3270 will not access bulletin boards
+or information services (like CompuServe). Thi is not true, and I must admit
+the thought crossed my mind that such a statement would lead the unknowing into
+buying Access 3270 for work and Access /// (or other communications package)
+for bulletin board hopping or CompuServe use; a double sale in communications
+software.  The fact is that both of these programs send ASCII codes out.  With
+a protocal converter these codes are changed to EBCDIC.  If the computer on the
+the other end has a converter or already understands ASCII (as do your
+neighborhood bulletn boards running on ASCII machines) no conversion is
+needed.  Thus Access 3270 will allow you to talk to other ASCII machines like
+information exchanges.  However, the PFK keys have no meaning to such machines
+since they send out escape codes.
+     Having twice mentioned PFK keys, I guess I should now get to their
+description.  Programmed Function Keys are special keys on an IBM 3270 family
+terminal (and available on many other types like DEC VT-100 family). They are
+activated by pressing a key marked AL (Alternative) and one of the numeric
+keys on the keyboard at the same time.  If you think this sounds a bit like a
+control key, or an open/closed apple key sequence you are right!  On the IBM
+3278 terminal, the PFK keys send out a sequence of escapes followed by the
+number pressed.  Thus PFK1 is two escapes and a 1.  There are also other
+special keys on the IBM keyboard such as a home key, an attention key and two
+to three PA keys.  The software being run on the host computer interprets these
+PFK codes according toits programming.  Most applications read the PFK's as
+macros (Power Keys/Desktop Manager?) for various commands.
+     Access 3270 emulates all of these keys using the open-apple, the closed
+apple and the shift key in combination with the numeric keypad and the top row
+on the main keyboard.  Using the shift key and the numeric keyboard emulates
+the 'system control' keys such as the clear, PA1-3, SYS REQ keys on the 3270.
+The keypad gets a full workout since the open-apple/keypad sequence emulates
+PF3-24 and the closed apple/keypad sequence emulates PF1-12.  The open apple
+and the keyboard numbers are always PF1-12.  I would have expeced the closed
+apple in combination with keyboard numbers would produce PF13-24 but they do
+not.
+     The keypad, in its normal setting is a numeric pad.  However Access 3270
+allows you to change this default.  If you find yourself using PF1-12
+extensively, you can make the keypad into PF1-12 by default; just as if you
+were using the open apple key.  The same holds true fo any of the three sets
+of keys the keypad can emulate.  However, the numeric keypad is lost.
+     The programs comes with a set of red, blue and green markers for the
+shift, open apple and closed apple keys respectively (Not available with the PD
+version).  These markers are useful in that they give the special keys greater
+visibility.  There are plastic templates to fit over the top row of keys and
+one to fit around the numeric keypad.  These have stickers on them and are
+meant to stay. (Again - not availble with the PD version).  I tried to use
+them without sticking them down and they moved alot.  I suppose they could be
+taped in place if you did not want to permanently attach them.  Considering
+that there were not any keyboard enhancers available at the time the program
+was written; Access 3270 represents a high point in /// programming.  It
+actually makes full use of the ability of the /// to recognize the various
+special function keys.
+     It may come as a surprise to you (it did me) that with all this eyboard
+reassigning it is possible to use Access 3270 with Power Keys (and with Desktop
+Manager as well- Transcriber).  However, there are some restrictions since
+both essentially change the keyboard output.  I found that Power Keys won out
+over Access 3270 for control of the keys (Same for DTM if you have Macro
+Manager and have set up macros - transcriber).  If Power Keys is set to print
+"/Profile/output" using the closed-apple/3 key on the numeric keypad,
+closed-apple/3 will get you "/profile/output", notPF22.  If your power key is
+the open-apple, you will be unable to access PF13-24 since these are only
+available through the keypad and Power Keys defines the macro.  Also, you will
+not be able to use the top row of numbers as Power Keys.  Thus it is best to
+use the closed apple as your power key so you get more keys.  Also Access 3270,
+like Access /// uses the open-apple for some of its functions.  The good news
+here is that using the closed-apple power key allows you to use any of the
+alphabetic keys as powr keys macros.  You must, however, be sure that the
+PFKeys are not assigned by Power Keys.
+     Access 3270 can be loaded into Catalyst (Or Selector).  I put mine under
+the /Profile/Catalyst/ACC3.3270/ and used the Catalyst interpreter installation
+procedure.  I then added the program to the menu through the Catalyst Menu
+Edit.  Setting the default pathname rewarded me with another pleasant surprise.
+ Access 3270 does not seem to have any hardcoded pathnames.  Thus, unlike
+Access ///, it does not require hat the TERMREC and CONFIG files reside at a
+level directly below that volume.
+     (For Selector simply place the Access 3270 SOS.INTERP File under the
+/Programs/ACCESS.3270 Subdirectory along with the other files.  Then add it to
+the menu using the Menu Editor and make sure you set the proper pathnames. Be
+sure to place the ACS3FONT under the Character Sets Subdirectory and set
+the proper pathname (see below.))
+
+Here's what Selector's Menu Specification Form should look like:
+
+PROGRAM file:                 .PROFILE/PROGRAMS/ACCESS.3270/SOS.INTERP
+LANGUAGE file:
+DATA prefix:                  .PROFILE/CHARACTER.SETS/ACS3FONT
+KEYBOARD LAYOUT file:         (STANDARD KEYBOARD LAYOUT)
+
+     The Access 3270 manual does make some mention ofinterpreter switchers'
+in a generic sense.  The first time is a warning to make sure the ACS3FONT is
+available through the SOS.DRIVER file.  With Catalyst you simply copy the font
+into the directory with the rest of your Access 3270 files and set the file as
+the default path for the character set under the Catalyst editor.  The manual
+further states that you should always exit the program through the open apple-q
+function (that is, not with the double-apple escape sequence of Catalyst).
+Quitting closes the ecording file properly and returns you to the Catalyst
+menu if you have Catalyst or gives you the infamous "INSERT DISKETTE AND
+REBOOT" message, if you don't.  You can quit from the main menu or with
+open-apple/Q from the terminal mode.
+     Access 3270 does not allow the user to set as many defaults as Access ///,
+but this is because IBM 3270 terminals do not vary in certain aspects.  There
+are not any tab settings since these are usually software controlled in the IBM
+environment, nor is the linefeed afte carriage return toggle option available.
+ This is because these two different keys are built into Access 3270. The
+RETURN key functions as a newline key, or a linefeed without carriage return.
+In most IBM systems, this places a 'soft' linefeed into what you plan to do,
+like edit a downloaded program.  On the 3270 terminal, this key is marked with
+a curved arrow.
+     The 'Enter' key is the hard-return sending both linefeeds and carriage
+returns.  The reason for this has to do with the text editors of many IM
+mainframes such as SPF or CMS. The ENTER key on both the IBM 3270 terminal and
+ACCESS 3270 serves as a linefeed/carriage return.  Most IBM editors see this as
+an end of input mode and return you to a command level.  Access 3270 allows
+both keys to exist at once where Access /// has one or the other.
+     When Access 3270 is booted or chosen through an interpreter switching
+program the user is presented with a main menu.  Here are the four options:
+TERMINAL MODE, TRANSMIT A FILE, HELP, and EXIT.  EXIT send you back to
+Catalyst or Selector.  HELP send you to a PF key display which shows what the
+templates show, how each key functions.  From HELP press open apple+? for the
+Status display.  It is also available fromthe terminal mode with either two
+open-apple+? or two open-apple+S.  This display shows the name of the recording
+file, how full it is and whether filtering is on or off.  Filtering is a
+process by which Access 3270 removes all control characters except returns,
+linefeeds and tabs.
+     Additionally, the tatus display shows all of the open-apple commands that
+are available from the terminal mode (See other help files on this PD disk for
+copies of each display).  There are two open-apple functions which are not
+commands to the Access 3270 program.  The first is the open-apple+B which sends
+a break or ATTN through the modem. The other is the open-apple+TAB which is the
+3270 back-tab.  Transmitting a file involves having an ASCII data file (not
+Pascal or Basic data files)(ACCESS 3270 also does not have XMDEM or Binary II
+capability) ready to send.  When you choose this option, you are prompted for
+the file to send.  If it is not found you are asked to try again.
+Escape-Return exits the routine.
+     Also, the manual is correct in pointing out that the mainframe must be
+able to accept a line transmitted file.  Most text editors (Applewriter, Word
+Juggler) do not have the ability to distinquish a linefeed/carriage return and
+a linefeed alone.  They simply input a linefeed/carriage return at the end of
+the line.  As stated above many IBM editors see this as an end of input and
+then expect commands to be entered. A program must exist on the mainframe which
+ignores this feature.  The terminal mode is exactly that, and it is from here
+you issue open-apple commands, modem commands and communicate with other
+computers.  From here you can toggle the recording, start command file
+processing, print the current screen to the recording file or exit completely.
+One additional function is an open-apple+escape sequence that esets the
+system, the RS232 and typeahead buffers and the screen.
+     Recording with Access 3270 is just like Access ///.  The open-apple+S
+sneds you to a set-up menu which allows you to change duplex, wraparound, baud
+(which is set to 4800 baud for Apple Cluster Controller use), keypad (as
+mentioned above), close and open a new recording file (virtually any SOS
+device, disks or printers). The default recording file is TERMREC, but this can
+be permanently changed, (as can all the defaults) by pressing conrol+S from
+the set-up menu.
+     If the recording file already exists when you attempt to change, Access
+3270 tells you and gives you the option of overwriting the file or changing to
+a new name.  If the file fills, you are asked to assign a new file name.  With
+floppies, insert a new disk and proceed.  From the terminal mode, recording is
+turned on and off with open-apple+R; filtering is toggled with open-apple+F.
+Everything that transpires goes into the recording file, including what you
+enter.  You can eiter return to the terminal mode or back to the main menu.
+     Whenever you want data to pass through the modem, it is necessary to
+remember to press the ENTER key.  I spent half an hour trying to figure out why
+repeated ATTD comands would not dial my modem. Finally I realized that I needed
+to send a linefeed/carriage return not just a linefeed: ENTER not RETURN.
+     Open-apple+P prints what is on the screen to the current recording file.
+This can be a quick way to record a phone number that flashes by sudenly.
+     Finally, open-apple+C causes Access 3270 to begin processing a command
+file.  A command file is a word processor, Pascal ASCII or BASIC text file
+containing commands, comments or lines of data to be transmitted.  This command
+language is very like that available for the Access 3.2x interpreter version.
+Commands begin with a lead-in character, the @, which can be changed. Lines
+beginning !! are comments.  Any other lines are transmited as if they were 
+typed at the keyboard.  Among the many commands are special ones alowing the PF
+key equivalents to be sent, mathing routines which check incoming data for 
+special sequences like logon prompts and @ACC commands for controlling an Apple
+Cluster Controller.  
+        It is also possible to transmit and receive files automatically, and
+certain functions will check for day and time to take certain actions.  Thus it
+would be possible to have your Apple /// logon to a mainframe, upload a program,
+and initiate a first compile.  This could be done late at night when long 
+distance phone rates are cheaper and there are fewer users on the system. These
+command files can be chained.  In passing, Access /// command files must be 
+modified to work with Access 3270.  Access /// sends a RETURN and it takes an 
+ENTER to pass data out of Access 3270.  There is a command (@ENx) which will 
+force an ENTER to be sent every x lines.
+        How would I rate Access 3270?  In my opinion it is one of the best 
+programs Apple Computer ever attached their name to for the ///.  It does 
+what it says, it emulates an IBM 3270 terminal.  It is Catalyst (and Selector)
+compatible, and judging from the manual it was written with interpreter
+switching in mind, and so there are not any hardcoded pathnames. It fully uses 
+the ability of the /// to recognize special keys, one of the strong and
+underused powers of the /// until the advent of Power Keys and Desktop Manager.
+        Unfortunately, having been written before these macro programs, there's
+a conflict.  However, even this can be overcome with care.  According to Sun
+Remarketing, the retail price of Apple Access 3270 was $295.00.  I wouldn't pay
+that much unless I was making beaucoup bucks in communication with a mainframe.
+But $75.00 (in 1987) was a very good deal.  I am used to IBM 3270 terminals, and
+Access 3270 gives me a superior emulator.  It is even better than the real thing
+in many ways; I could have a Dvorak keyboard layout, not available on the IBM 
+3270's without serious upgrading.  Now, if it just supported four colors for 
+3279 emulation!
+        I would say that Apple Access 3270 is an 'A' product.  Here, ironically,
+is a program which really shows what a /// can do through its use of a console
+driver which allows keystrokes to mean more than their face value. It's ironic
+in that this progam emulates an IBM terminal.  It is a shame that more programs
+did not take advantage of these capabilities.  Also, if you are in an 
+environment where IBM PC's are being touted for development and true 3270 
+emulation you can save your ///, and perhaps encourage the purchase of more 
+///'s with this product.
+
+        Transcriber Note:  Access 3270 may still be available from Sun
+                           Remarketing if you are interested in obtaining
+                           the manuals.  Call them at 1-800-821-3221.
+
