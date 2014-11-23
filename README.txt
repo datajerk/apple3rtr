@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.7 (See CHANGE LOG at end of document)
+Apple /// Ready-to-Run README v1.8 (See CHANGE LOG at end of document)
 
 
 
@@ -7,14 +7,14 @@ Apple /// Ready-to-Run README v1.7 (See CHANGE LOG at end of document)
 (1) Apple /// Computer
     2 MHz 6502
     512K RAM Expansion
-    A functional RS-232 Port
+    RS-232 Port
 (1) Internal Floppy Drive
 (3) External Floppy Drives
 (1) CFFA2 Mass Storage Adapter in Slot 1
-(1) 46 MB Internal Hard Disk Drive (HDD) Partitioned into:
-    (2) 16MB Partitions:
-        /BOS (.PROFILE)
-        /HOME (.CFIDE2)
+    (1) 46 MB Internal Hard Disk Drive (HDD) Partitioned into:
+        (2) 16MB Partitions:
+            /BOS (.PROFILE)
+            /HOME (.CFIDE2)
 (1) Appli-Card 6 MHz z80 CP/M Adapter in Slot 2 for running those *other*
     business applications (and games!).
 
@@ -36,7 +36,6 @@ At this time the included game ports are not functional.  There will be a
 + Backup ///
 + Lazarus ///
 + Access /// 1.1
-+ ADTPro 1.2.9
 + Apple Writer ///
 + VisiCalc Advanced
 + /// E-Z Pieces
@@ -58,7 +57,7 @@ At this time the included game ports are not functional.  There will be a
 
 * PREREQUISITES
 
-For OS/X (and Linux):
+For OS/X:
 
   + SDL 1.2.5 is required.  SDL 2.0.x is currently unsupported/unstable.  Use
     this URL:  http://www.libsdl.org/download-1.2.php and install the correct
@@ -67,12 +66,20 @@ For OS/X (and Linux):
   + MESS 0.153 or later:  http://sdlmame.lngn.net.  Place in your path or in
     this directory.
 
+    NOTE:  For 115K VSDRIVE support use the mess64 included with this
+           distribution or MESS 0.154 (when released) or later.  See TECH TIP
+           #4.
+
 
 For Windows:
 
   + MESS 0.153 or later:  http://www.mamedev.org/release.html  Place in your
-    path or this directory.  NOTE:  The latest SVN Windows binaries can be had
-    from emucr.com.
+    path or this directory.
+
+    NOTE:  The latest SVN Windows binaries can be had from emucr.com.
+
+    NOTE:  For 115K VSDRIVE support get SVN 29421 or later from emucr.com.  See
+           TECH TIP #4.
 
   + From the apple3rtr directory type "copy mess.ini.windows mess.ini".
 
@@ -82,13 +89,15 @@ For Windows:
 
 NOTE:  Windows users type "mess" or "mess64" instead of "./mess64".
 
-NOTE:  OS/X, Linux users type "mess64" instead of "/.mess64" if in your path.
+NOTE:  OS/X users type "mess64" instead of "/.mess64" if in your path.
 
 1. Type on a single line (but do not press RETURN):
 
 ./mess64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4.png -sl1 cffa2 -hard apple3.hd -sl2 applicard -ramsize 512k
 
 NOTE:  Adjust -volume and -resolution to your taste.  Volume 0 is the loudest.
+
+NOTE:  "-effect Scanlines0x4.png" is option and only optimized for 1024x768.
 
 
 2. Append to the command line above one of the following floppy images and
@@ -114,14 +123,14 @@ NOTE:  The bosboot and cmpboot images below have been modified to support
 + CP/M 2.2 (2) Disk III system with CP/M preinstalled applications on
   HDD (/BOS/CPM1 (C:)):
 
-  NOTE:  A: = .D1, B: = .D2, C: = .PROFILE/.CFIDE1
+  NOTE:  A: = .D1, B: = .D2, C: = .PROFILE/CPM1
 
   -flop1 cpmboot.po 
 
 + CP/M 2.2 (4) Disk III system with CP/M preinstalled applications on
   HDD (/BOS/CPM1 (E:)):
 
-  NOTE:  A: = .D1, B: = .D2, C: = .D3, D: = .D4, E: = .PROFILE/.CFIDE1
+  NOTE:  A: = .D1, B: = .D2, C: = .D3, D: = .D4, E: = .PROFILE/CPM1
 
   -flop1 cpmboot4.po 
 
@@ -149,9 +158,11 @@ as launching the UI Menu are also sent to the Apple ///.  This can contribute
 to a poor experience.
 
 To address the aforementioned the PARTIAL/FULL Emulation mode toggle has been
-mapped to the F1 key, and the UI Menu to the F2 key.  NOTE:  OS/X users if you
-have F1/F2 set to control brightness (default OS/X behavior) then use fn-F1 and
-fn-F2 for F1 and F2 anytime you are instructed to use F1 or F2.
+mapped to the F1 key, and the UI Menu to the F2 key.
+
+NOTE:  OS/X users, if you have F1/F2 set to control brightness (default OS/X
+       behavior) then use fn-F1 and fn-F2 for F1 and F2 anytime you are
+       instructed to use F1 or F2.
 
 To remove or insert a virtual floppy press F1 to engage PARTIAL Emulation mode,
 then immediately press F2 to access the UI Menu.  NOTE:  While in PARTIAL
@@ -209,6 +220,8 @@ Go to http://www.mess.org/mess/howto#compiling_mess for more details.
 
 RTFMs:  http://apple3.org and http://www.mess.org/mess/howto.
 
+Post a message on comp.sys.apple2.
+
 
 
 * MORE INFO ABOUT MESS APPLE ///
@@ -217,24 +230,28 @@ http://rbelmont.mameworld.info/
 
 
 
-* TECH NOTES
+* TECH TIPS
 
 #1:  Using Meat-net to get data/programs in and out of the Apple ///:
 
-Getting things in and out of the Apple /// has to be done with floppy images.
-There are many applications that can manipulate Apple /// SOS and CP/M floppy
-images.  The following have been known to work:
+Getting things in and out of the Apple /// has to be done with floppy images
+(or comm programs (see TIP #3) or VSDRIVE (see TIP #4)).  There are a few
+applications that can manipulate Apple /// SOS and CP/M floppy images.  The
+following have been known to work:
 
-For SOS, Apple Commander works very well: http://applecommander.sourceforge.net
+For SOS, AppleCommander works very well:  http://applecommander.sourceforge.net
+(CiderPress for Windows/WINE also works:  http://ciderpress.sourceforge.net)
 
 For CP/M, use CPM Tools (http://www.moria.de/~michael/cpmtools/) with a format
-type of apple-do for DOS and apple-po for ProDOS ordered disk images.
+type of apple-do for DOS and apple-po for ProDOS ordered disk images.  OS/X
+users will need to install the CLI development tools to build.  Windows users
+can download Bill Buckels binaries:  http://www.cpm8680.com/cpmtools
 
 DOS order images should be suffixed with .do or .dsk.  ProDOS ordered diskimage
-should be siffixed with .po.  The incorrect suffix will confuse MESS.
+should be suffixed with .po.  The incorrect suffix will confuse MESS.
 
 
-#2:  Fortran /// HOW-TO:
+#2:  Fortran /// Q&D HOW-TO:
 
 1.  Launch Pascal ///, edit and save your program, e.g. /HOME/HELLO.F
 2.  From Pascal ///, X)ecute /BOS/FORTRAN/FORTRAN OR launch Fortran /// from
@@ -250,6 +267,9 @@ The MESS 0.153 Apple /// driver now inlcudes RS-232 support.  To enable, append
 -rs232 null_modem -bitb <target> where <target> is a filename (for printer
 output, e.g. printer.txt) or a socket description (socket.host:port) for TCP-
 based bidirectional null-modem access, e.g. socket.127.0.0.1:2023.
+
+NOTE:  If MESS crashes while starting with -rs232 null_modem -bitb socket...,
+       then wait 30 seconds and try again.
 
 As with physical null-modem serial-to-serial communications it is necessary to
 match the baud (300, 600, 1200, 2400, 4800, 9600) and protocol (8-N-1 only
@@ -279,6 +299,76 @@ Examples:
 1.  Append to MESS command line: 
 
     -rs232 null_modem -bitb printer.txt
+
+
+#4:  VSDRIVE HOW-TO:
+
+VSDRIVE (Virtual Serial Drive) is an RS-232-based virtual drive hosted by a Mac
+or PC running ADTPro in "localhost" mode.  Before continuing please read
+http://adtpro.sourceforge.net/vdrive.html to familiarize yourself with VSDRIVE.
+
+VSDRIVE is a built-in feature of ADTPro.  Only ADTPro-1.3.0 has been tested
+(http://sourceforge.net/projects/adtpro/files/adtpro/ADTPro-1.3.0) and is
+included with this distribution.
+
+In the "disks" subdirectory of the included ADTPro-1.3.0 there are two zip
+files, v800k.zip and v16m.zip, containing two files, Virtual.po and Virtual2.po.
+The sizes are 800K and 16M respectively.  You can replace them with any size
+ProDOS formatted volume as long as the volume is < 16MB (max recognized by SOS)
+and the names must be unchanged.  You can create new virtual disks with
+AppleCommander (http://applecommander.sourceforge.net/) or CiderPress
+(http://ciderpress.sourceforge.net/).
+
+NOTE:  < 16MB is 32767 sectors (max).  The provided 16MB images are 32767
+       sectors.
+
+To start VSDRIVE:
+
+1.  Type: cd ADTPro-1.3.0/disks
+2.  Unzip v800k.zip for two 800K virtual disks or unzip v16m.zip for two 16M
+    virtual disks.  Tip:  Mac users can type "unzip filename.zip".
+3.  Type: cd ..
+4.  Type: "./adtpro.sh localhost &" (Mac) or "adtpro localhost" (PC).
+5.  Type: cd ..
+
+If using MESS 0.153 then only 19.2K serial rates are supported.  For 115K
+speed use the included mess64 (OS/X) or obtain an SVN build >= 29421 from
+emucr.com.  Only SVN 29241 has been tested with 115K.  Official MESS releases
+> 0.153 should work as well.
+
+To use VSDRIVE 19.2K standalone, append to the MESS command line:
+
+-flop1 VDRIVE-1.3.0.19k.DSK -rs232 null_modem -bitb socket.127.0.0.1:1977
+
+To use VSDRIVE 115K standalone, append to the MESS command line:
+
+-flop1 VDRIVE-1.3.0.DSK -rs232 null_modem -bitb socket.127.0.0.1:1977
+
+To use VSDRIVE 19.2K with BOS, CFFA2, etc..., append to the MESS command line:
+
+-flop1 bosbootvsd19k.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977
+
+To use VSDRIVE 115K with BOS, CFFA2, etc..., append to the MESS command line:
+
+-flop1 bosbootvsd.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977
+
+INPORTANT:  IN ALL CASES, CHANGE THE BAUD RATE FROM THE UI MENU TO EITHER 19200
+            OR 115200 BEFORE ACCESSING .VSDRIVE or .VSDRIVE2!  See TECH TIP #3
+            on changing baud rates.
+
+NOTE:  The bosboot VSDRIVE disks have .RS232 removed.  Serial printing and
+       other non-VSDRIVE serial functions will be unavailable.
+
+NOTE:  If MESS crashes while starting with -rs232 null_modem -bitb socket...,
+       then wait 30 seconds and try again.
+
+To use VSDRIVE with any other boot disk, use the System Configuration Program
+(SCP) to add the driver VSDRIVE.A3DRVR from VDRIVE-1.3.0.DSK (115K) or
+VDRIVE-1.3.0.19k.DSK.  See the "Apple /// Standard Device Drivers Manual" for
+more details.
+
+VSDRIVE 115K performs at ~1/5th the speed of the CFFA2.  The intended purpose
+is for large scale transfers.
 
 
 
@@ -312,6 +402,7 @@ v1.4:  * Added MORE INFO ABOUT MESS APPLE /// section
 v1.5:  * Added Lazarus ///
        * Added ADTPro 1.2.9
        * Added Apple /// Fortran (/BOS/FORTRAN)
+       * Added TECH TIP #2:  Fortran /// Q&D HOW-TO
 
 v1.6:  * Added Access /// 1.1
        * Added CP/M DBaseII 2.3B (/BOS/CPM1, C: or E:)
@@ -329,6 +420,18 @@ v1.7:  * Updated command line to use shorter options.
        * Updated default bosboot.dsk and bosboot4.dsk .RS232 driver to 9600 8N1
          for use with -rs232 null_modem -bitb options.
        * Added "Generic Serial (.RS232)" printer to /// E-Z Pieces.
+       * Added TECH TIP #3:  Get "online" with Access /// HOW-TO
+
+v1.8:  * mess64 (OS/X) updated to SVN 29421.  Fixes for 115K serial port speed.
+       * mess.exe removed, 0.153 released.
+       * Added TECH TIP #4:  VSDRIVE HOW-TO
+       * Added bosbootvsd.dsk and bosbootvsd19k.dsk (see TECH TIP #4).
+       * Removed ADTPro from BOS Menu (didn't work)
+       * Added ADTPro-1.3.0 for VSDRIVE support
+       * Moved ADTPro-1.3.0/disks/VDRIVE-1.3.0.DSK to .
+       * Added VDRIVE-1.3.0.19k.DSK (19K version of above)
+       * Removed ADTPro-1.3.0/disks/*
+       * Added to ADTPro-1.3.0/disks v800k.zip and v19m.zip
 
 
 
