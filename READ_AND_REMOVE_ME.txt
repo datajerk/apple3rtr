@@ -1,0 +1,2 @@
+git remote add origin https://github.com/datajerk/apple3rtr.git
+git push -u origin master
