@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.3 (See CHANGE LOG at end of document)
+Apple /// Ready-to-Run README v1.4 (See CHANGE LOG at end of document)
 
 
 * WHAT'S IN THE BOX?
@@ -40,7 +40,7 @@ There will be a *free* upgrade in the future.
 + Apple /// COBOL
 + Apple /// Business Basic
 + Apple /// Pascal 1.1
-+ CP/M 2.2 (2 MB Virtual HDD (C:) as file /BOS/CPM1)
++ CP/M 2.2 (2 MB Virtual HDD (C: or E:) as file /BOS/CPM1)
   + Turbo Pascal 3.01a
   + Zork I: The Great Underground Empire
   + Zork II: The Wizard of Frobozz
@@ -76,17 +76,36 @@ NOTE:  Adjust -volume and -resolution to your taste.  Volume 0 is the loudest.
 2. Append to the command line above one of the following floppy images and
 *then* press RETURN:
 
+NOTE:  The bosboot and cmpboot images below have been modified to support the
+       CFFA2 adapter.
+
 Apple /// Demo Disk:
 
   -floppydisk1 demodisk.dsk
 
-BOS 1.0 with Apple /// preinstalled applications on HDD (/BOS):
+BOS 1.0 (2) Disk III system with Apple /// preinstalled applications on
+HDD (/BOS):
 
   -floppydisk1 bosboot.dsk
 
-CP/M 2.2 with CP/M preinstalled applications on HDD (/BOS/CPM1):
+BOS 1.0 (4) Disk III system with Apple /// preinstalled applications on
+HDD (/BOS):
+
+  -floppydisk1 bosboot4.dsk
+
+CP/M 2.2 (2) Disk III system with CP/M preinstalled applications on
+HDD (/BOS/CPM1 (C:)):
+
+NOTE:  A: = .D1, B: = .D2, C: = .PROFILE/.CFIDE1
 
   -floppydisk1 cpmboot.po 
+
+CP/M 2.2 (4) Disk III system with CP/M preinstalled applications on
+HDD (/BOS/CPM1 (E:)):
+
+NOTE:  A: = .D1, B: = .D2, C: = .D3, D: = .D4, E: = .PROFILE/.CFIDE1
+
+  -floppydisk1 cpmboot4.po 
 
 CFFA Utility to create or delete partitions (NOTE:  DO NOT DELETE /BOS!):
 
@@ -94,7 +113,7 @@ CFFA Utility to create or delete partitions (NOTE:  DO NOT DELETE /BOS!):
 
 
 
-* HOW TO OPERATE Your New Apple ///
+* HOW TO OPERATE YOUR NEW APPLE ///
 
 All the keys on your keyboard *should* correspond to the correct Apple ///
 keys.  The DELETE/BACKSPACE key has been remapped to the Apple /// LEFT ARROW
@@ -112,7 +131,7 @@ as launching the UI Menu are also sent to the Apple ///.  This can contribute
 to a poor experience.
 
 To address the aforementioned the PARTIAL/FULL Emulation mode toggle has been
-mapped to the F1 key, and the UI Menu to the F2 key.  NOTE: OS/X users if you
+mapped to the F1 key, and the UI Menu to the F2 key.  NOTE:  OS/X users if you
 have F1/F2 set to control brightness (default OS/X behavior) then use fn-F1 and
 fn-F2 for F1 and F2 anytime you are instructed to use F1 or F2.
 
@@ -152,7 +171,7 @@ unknown at this time if this is a MESS issue or an Apple /// issue.
 
 
 
-* BUILD NOTES:
+* BUILD NOTES
 
 To roll-your-own (OS/X):
 
@@ -171,6 +190,12 @@ Go to http://www.mess.org/mess/howto#compiling_mess for more details.
 * SUPPORT
 
 RTFMs:  http://apple3.org and http://www.mess.org/mess/howto.
+
+
+
+* MORE INFO ABOUT MESS APPLE ///
+
+http://rbelmont.mameworld.info/
 
 
 
@@ -208,6 +233,16 @@ v1.2:  * Added Quick File /// to HD image
 v1.3:  * Updated: mess.ini/mess.ini.windows (cleanup)
        * Added Backup ///.  Use this and MeatNet for virtual to physical
          (.PROFILE/.CFIDE1 <=> .PROFILE) transfers through MeatSpace.
+       * Changed default BOS blanker (type open-apple-B from BOS).
+
+v1.4:  * Added MORE INFO ABOUT MESS APPLE /// section
+       * Added Backup3.cffa2.dsk image for virtual <=> physical and vv.
+       * Added bosboot4.dsk.  Chaged System Parameters "Number of Disk III
+         Drives" from 2 to 4.  Now .D3 and .D4 work.  bosboot.dsk and
+         cpmboot.po only support (2) Disk III drives (.D1 and .D2).
+       * Added cpmboot4.dsk.  Chaged System Parameters "Number of Disk III
+         Drives" from 2 to 4.  Now .D3 and .D4 work as C: and D:, HD
+         (/BOS/CPM1) is now E:.
 
 
 
