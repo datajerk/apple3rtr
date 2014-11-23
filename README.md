@@ -351,7 +351,7 @@ Video demo: <https://www.youtube.com/watch?v=x-EU9nii2hM>
 
 ## Directly Manipulating apple3.hd
 
-HOW-TOs [Using Meat-net to get data/programs in and out of the Apple ///](#using-meat-net-to-get-data-programs-in-and-out-of-the-apple), [Get "online" with Access ///](#get-online-with-access-), and [VSDRIVE](#vsdrive) provide Apple /// "native" ways of transferring files (diskette, serial, and VSDRIVE).  However, the fastest way, is to directly manipulate the HDD image from the host OS.
+HOW-TOs [Using Meat-net to get data/programs in and out of the Apple ///](#using-meat-net-to-get-dataprograms-in-and-out-of-the-apple-), [Get "online" with Access ///](#get-online-with-access-), and [VSDRIVE](#vsdrive) provide Apple /// "native" ways of transferring files (diskette, serial, and VSDRIVE).  However, the fastest way, is to directly manipulate the HDD image from the host OS.
 
 Prerequisites:
 
