@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.5 (See CHANGE LOG at end of document)
+Apple /// Ready-to-Run README v1.6 (See CHANGE LOG at end of document)
 
 
 
@@ -34,7 +34,8 @@ There will be a *free* upgrade in the future.
 + SOS 1.3 System Utilities
 + Backup ///
 + Lazarus ///
-+ ADTPro 1.2.9 (BOS Menu Screen #2)
++ Access /// 1.1
++ ADTPro 1.2.9
 + Apple Writer ///
 + VisiCalc Advanced
 + /// E-Z Pieces
@@ -45,7 +46,9 @@ There will be a *free* upgrade in the future.
 + Apple /// Fortran
 + Apple /// COBOL
 + CP/M 2.2 (2 MB Virtual HDD (C: or E:) as file /BOS/CPM1)
-  + Turbo Pascal 3.01a
+  + WordStar 3.0
+  + DBaseII 2.3B
+  + Turbo Pascal 3.01A
   + Zork I: The Great Underground Empire
   + Zork II: The Wizard of Frobozz
   + Zork III: The Dungeon Master
@@ -72,7 +75,7 @@ NOTE:  Windows users type "mess" instead of "./mess64".
 
 1. Type on a single line (but do not press RETURN):
 
-./mess64 apple3 -skip_gameinfo -volume -24 -resolution 800x600 -sl1 cffa2 -hard apple3.hd -sl2 applicard -ramsize 512k
+./mess64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4.png -sl1 cffa2 -hard apple3.hd -sl2 applicard -ramsize 512k
 
 NOTE:  Adjust -volume and -resolution to your taste.  Volume 0 is the loudest.
 
@@ -261,6 +264,11 @@ v1.4:  * Added MORE INFO ABOUT MESS APPLE /// section
 v1.5:  * Added Lazarus ///
        * Added ADTPro 1.2.9
        * Added Apple /// Fortran (/BOS/FORTRAN)
+
+v1.6:  * Added Access /// 1.1
+       * Added CP/M DBaseII 2.3B (/BOS/CPM1, C: or E:)
+       * Added CP/M WordStar 3.0 (/BOS/CPM1, C: or E:)
+       * Added artwork/Scanlines* and updated command to utilize.  Much better!
 
 
 
