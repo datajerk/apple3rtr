@@ -131,9 +131,9 @@ This document assumes that all work will be in the `apple3rtr` directory.
 + MESS 0.155 or later:  <http://www.mamedev.org/release.html>--place in your path or in the `apple3rtr` directory.
 
 + From the `apple3rtr` directory type:
-```
-copy mess.ini.windows mess.ini
-```
+	```
+	copy mess.ini.windows mess.ini
+	```
 
 
 ## Linux
@@ -146,12 +146,12 @@ copy mess.ini.windows mess.ini
 + Install SDL 2.x.x development libraries (<http://www.libsdl.org/download-2.0.php>)
 
 + Build from source:
-```
-git clone https://github.com/mamedev/mame.git
-cd mame
-make TARGET=mess PTR64=1 -j4
-```
-> Change `-j4` to `-j`*# of cores* to get faster builds.
+	```
+	git clone https://github.com/mamedev/mame.git
+	cd mame
+	make TARGET=mess PTR64=1 -j4
+	```
+	> Change `-j4` to `-j`*# of cores* to get faster builds.
 
 
 # Cold Booting
