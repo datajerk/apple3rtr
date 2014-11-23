@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.1
+Apple /// Ready-to-Run README v1.2 (See CHANGE LOG at end of document)
 
 
 * WHAT'S IN THE BOX?
@@ -31,13 +31,14 @@ There will be a *free* upgrade in the future.
   + BOS Program Switcher
   + BOS Utilities
 + SOS 1.3 System Utilities
++ /// E-Z Pieces
 + Apple Writer ///
 + Draw ON ///
 + VisiCalc Advanced
++ Quick File ///
 + Apple /// COBOL
 + Apple /// Business Basic
 + Apple /// Pascal 1.1
-+ SOS 1.3 System Utilities
 + CP/M 2.2 (2 MB Virtual HDD (C:) as file /BOS/CPM1)
   + Turbo Pascal 3.01a
   + Zork I: The Great Underground Empire
@@ -66,7 +67,7 @@ NOTE:  Windows users type "mess" instead of "./mess64".
 
 1. Simply type on a single line (but do not press RETURN):
 
-./mess64 apple3 -volume -24 -resolution 800x600 -sl1 cffa2 -hard apple3.hd -sl2 applicard -ramsize 512k
+./mess64 apple3 -skip_gameinfo -volume -24 -resolution 800x600 -sl1 cffa2 -hard apple3.hd -sl2 applicard -ramsize 512k
 
 NOTE:  Adjust -volume and -resolution to your taste.  Volume 0 is the loudest.
 
@@ -187,6 +188,21 @@ type of apple-do for DOS and apple-po for ProDOS ordered disk images.
 
 DOS order images should be suffixed with .do or .dsk.  ProDOS ordered diskimage
 should be siffixed with .po.  The incorrect suffix will confuse MESS.
+
+
+
+* CHANGE LOG
+
+v1.0:  -Initial release.
+
+v1.1:  -Updated mess64 to latest SVN build
+       -Added Draw ON /// to HD image
+
+v1.2:  -Added Quick File /// to HD image
+       -Added /// E-Z Pieces
+       -Changed CP/M Turbo Pascal terminal to SOROC (TINST)
+       -Added -skip_gameinfo to command line to "skip" game info (i.e. start
+        emulation without a pausing).
 
 
 
