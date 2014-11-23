@@ -249,7 +249,7 @@ To power down your Apple ///:  Quit any applications, and then select *Quit* fro
 
 ## Using Meat-net to get data/programs in and out of the Apple ///
 
-Getting things in and out of the Apple /// can be done with comm programs (see [Get "online" with Access ///](#get-online-with-access)), VSDRIVE (see [VSDRIVE](#vsdrive)), or by direct manipulation of apple3.hd (see [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd)).  However, using floppy images is probably the easiest and most strait forward.
+Getting things in and out of the Apple /// can be done with comm programs (see [Get "online" with Access ///](#get-online-with-access-)), VSDRIVE (see [VSDRIVE](#vsdrive)), or by direct manipulation of apple3.hd (see [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd)).  However, using floppy images is probably the easiest and most strait forward.
 
 For SOS, AppleCommander works very well: <http://applecommander.sourceforge.net>.  CiderPress for Windows/WINE also works: <http://ciderpress.sourceforge.net>.
 
@@ -257,7 +257,7 @@ For CP/M, use CPMTools (<http://www.moria.de/~michael/cpmtools/>) with a format 
 
 DOS order images should be suffixed with `.do` or `.dsk`, and ProDOS/SOS ordered disk images should be suffixed with `.po`.  The incorrect suffix will confuse MESS.
 
-See [How to Operate Your Virtual Apple ///](#how-to-operate-your-virtual-apple) (above) for instructions on working with floppy images.
+See [How to Operate Your Virtual Apple ///](#how-to-operate-your-virtual-apple-) (above) for instructions on working with floppy images.
 
 
 ## Fortran /// Q&D
@@ -334,7 +334,7 @@ To use VSDRIVE with BOS, CFFA2, etc..., append to the MESS command line:
 
 `-flop1 bosbootvsd.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977`
 
-> ***IMPORTANT:  IN ALL CASES, CHANGE THE BAUD RATE FROM THE UI MENU TO 115200 BEFORE ACCESSING .VSDRIVE or .VSDRIVE2!***  See [Get "online" with Access ///](#get-online-with-access) about changing baud rates.
+> ***IMPORTANT:  IN ALL CASES, CHANGE THE BAUD RATE FROM THE UI MENU TO 115200 BEFORE ACCESSING .VSDRIVE or .VSDRIVE2!***  See [Get "online" with Access ///](#get-online-with-access-) about changing baud rates.
 
 > If MESS crashes while starting with `-rs232 null_modem -bitb socket...`, then wait 30 seconds and try again.
 
@@ -351,7 +351,7 @@ Video demo: <https://www.youtube.com/watch?v=x-EU9nii2hM>
 
 ## Directly Manipulating apple3.hd
 
-HOW-TOs [Using Meat-net to get data/programs in and out of the Apple ///](#using-meat-net-to-get-data-programs-in-and-out-of-the-apple), [Get "online" with Access ///](#get-online-with-access), and [VSDRIVE](#vsdrive) provide Apple /// "native" ways of transferring files (diskette, serial, and VSDRIVE).  However, the fastest way, is to directly manipulate the HDD image from the host OS.
+HOW-TOs [Using Meat-net to get data/programs in and out of the Apple ///](#using-meat-net-to-get-data-programs-in-and-out-of-the-apple), [Get "online" with Access ///](#get-online-with-access-), and [VSDRIVE](#vsdrive) provide Apple /// "native" ways of transferring files (diskette, serial, and VSDRIVE).  However, the fastest way, is to directly manipulate the HDD image from the host OS.
 
 Prerequisites:
 
@@ -434,7 +434,7 @@ The safest way to work with the CP/M HD image is from CP/M using floppy images t
 
 Prerequisites:
 
-1.  ***CLEARLY UNDERSTAND*** [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd) (above).
+1.  ***CLEARLY UNDERSTAND*** [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) (above).
 
 2.  Download and install CPMTools (<http://www.moria.de/~michael/cpmtools/>). OS/X users will need to install the CLI development tools to build. Windows users can download Bill Buckels binaries: <http://www.cpm8680.com/cpmtools>.
 
@@ -466,7 +466,7 @@ Prerequisites:
 	
 4.  Extract `CPM1` from `bos.po`:
 
-    A.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd) and extract `bos.po`.
+    A.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) and extract `bos.po`.
 
     B.  Using AppleCommander or CiderPress extract `CPM1`, e.g. OS/X:
     
@@ -500,9 +500,9 @@ Updating `bos.po` with `CPM1`:
 	applecmd -p bos.po CPM1 PDA <CPM1
 	```
 
-2.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd) to update/create `apple3.hd` with the updated `bos.po`.
+2.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) to update/create `apple3.hd` with the updated `bos.po`.
 
-	> An alternative to using [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd) would be [VSDRIVE](#vsdrive) by copying `/BOS/CPM1` to `.VSDRIVE`, and then using AppleCommander or CiderPress to extract/replace `CPM1` from `Virtual.po`.
+	> An alternative to using [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) would be [VSDRIVE](#vsdrive) by copying `/BOS/CPM1` to `.VSDRIVE`, and then using AppleCommander or CiderPress to extract/replace `CPM1` from `Virtual.po`.
 
 
 ## Printing
@@ -569,7 +569,7 @@ The latest versions of MESS and ADTPro have measurably increased the speed of VS
 
 To make the switch from CFFA to VSDRIVE:
 
-1.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd) to extract `bos.po` and `home.po`.
+1.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) to extract `bos.po` and `home.po`.
 
 2.  Move `bos.po` and `home.po` to `ADTPro-2.0.0/disks` as `Virtual.po` and `Virtual2.po`,
     e.g. type:
