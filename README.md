@@ -113,15 +113,15 @@ This document assumes that all work will be in the `apple3rtr` directory.
 	> Extract and place in your path or in the `apple3rtr` directory.
 
   E.g.:
-```
-cd apple3rtr
-curl http://sdlmame.lngn.net/mess0155-64bit.zip >mess0155-64bit.zip
-unzip mess0155-64bit.zip
-cd mess0155-64bit
-cp -a * ..
-cd ..
-rm -rf mess0155-64bit*
-```	
+	```
+	cd apple3rtr
+	curl http://sdlmame.lngn.net/mess0155-64bit.zip >mess0155-64bit.zip
+	unzip mess0155-64bit.zip
+	cd mess0155-64bit
+	cp -a * ..
+	cd ..
+	rm -rf mess0155-64bit*
+	```	
 
 
 ## Windows
