@@ -495,10 +495,10 @@ Remove or Write/Update files to `CPM1`, type:
 Updating `bos.po` with `CPM1`:
 
 1.  Use AppleCommander or CiderPress to remove the old CPM1 and replace it with the new `CPM1`, e.g. OS/X:
-```
-applecmd -d bos.po CPM1
-applecmd -p bos.po CPM1 PDA <CPM1
-```
+	```
+	applecmd -d bos.po CPM1
+	applecmd -p bos.po CPM1 PDA <CPM1
+	```
 
 2.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3-hd) to update/create `apple3.hd` with the updated `bos.po`.
 
