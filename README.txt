@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.2 (See CHANGE LOG at end of document)
+Apple /// Ready-to-Run README v1.3 (See CHANGE LOG at end of document)
 
 
 * WHAT'S IN THE BOX?
@@ -31,10 +31,11 @@ There will be a *free* upgrade in the future.
   + BOS Program Switcher
   + BOS Utilities
 + SOS 1.3 System Utilities
-+ /// E-Z Pieces
++ Backup ///
 + Apple Writer ///
 + Draw ON ///
 + VisiCalc Advanced
++ /// E-Z Pieces
 + Quick File ///
 + Apple /// COBOL
 + Apple /// Business Basic
@@ -193,16 +194,20 @@ should be siffixed with .po.  The incorrect suffix will confuse MESS.
 
 * CHANGE LOG
 
-v1.0:  -Initial release.
+v1.0:  * Initial release.
 
-v1.1:  -Updated mess64 to latest SVN build
-       -Added Draw ON /// to HD image
+v1.1:  * Updated mess64 to latest SVN build
+       * Added Draw ON /// to HD image
 
-v1.2:  -Added Quick File /// to HD image
-       -Added /// E-Z Pieces
-       -Changed CP/M Turbo Pascal terminal to SOROC (TINST)
-       -Added -skip_gameinfo to command line to "skip" game info (i.e. start
-        emulation without a pausing).
+v1.2:  * Added Quick File /// to HD image
+       * Added /// E-Z Pieces
+       * Changed CP/M Turbo Pascal terminal to SOROC (TINST)
+       * Added -skip_gameinfo to command line to "skip" game info (i.e. start
+         emulation without a pausing).
+
+v1.3:  * Updated: mess.ini/mess.ini.windows (cleanup)
+       * Added Backup ///.  Use this and MeatNet for virtual to physical
+         (.PROFILE/.CFIDE1 <=> .PROFILE) transfers through MeatSpace.
 
 
 

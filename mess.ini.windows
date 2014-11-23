@@ -324,3 +324,19 @@ audio_latency             2
 # INPUT DEVICE OPTIONS
 #
 dual_lightgun             0
+
+#
+# SLOT DEVICES
+#
+sl1                       
+sl2                       
+sl3                       
+sl4                       
+
+#
+# IMAGE DEVICES
+#
+floppydisk1               
+floppydisk2               
+floppydisk3               
+floppydisk4               
