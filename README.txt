@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.0
+Apple /// Ready-to-Run README v1.1
 
 
 * WHAT'S IN THE BOX?
@@ -32,6 +32,7 @@ There will be a *free* upgrade in the future.
   + BOS Utilities
 + SOS 1.3 System Utilities
 + Apple Writer ///
++ Draw ON ///
 + VisiCalc Advanced
 + Apple /// COBOL
 + Apple /// Business Basic
