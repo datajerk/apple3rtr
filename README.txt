@@ -1,4 +1,4 @@
-Apple /// Ready-to-Run README v1.6 (See CHANGE LOG at end of document)
+Apple /// Ready-to-Run README v1.7 (See CHANGE LOG at end of document)
 
 
 
@@ -7,6 +7,7 @@ Apple /// Ready-to-Run README v1.6 (See CHANGE LOG at end of document)
 (1) Apple /// Computer
     2 MHz 6502
     512K RAM Expansion
+    A functional RS-232 Port
 (1) Internal Floppy Drive
 (3) External Floppy Drives
 (1) CFFA2 Mass Storage Adapter in Slot 1
@@ -21,8 +22,8 @@ Apple /// Ready-to-Run README v1.6 (See CHANGE LOG at end of document)
 
 * WHAT'S NOT IN THE BOX?
 
-At this time the included serial, printer, and game ports are not functional.
-There will be a *free* upgrade in the future.
+At this time the included game ports are not functional.  There will be a
+*free* upgrade in the future.
 
 
 
@@ -59,19 +60,29 @@ There will be a *free* upgrade in the future.
 
 For OS/X (and Linux):
 
-SDL 1.2.5 is required.  SDL 2.0.x is currently unsupported/unstable.  Use this
-URL:  http://www.libsdl.org/download-1.2.php and install the correct SDL
-distribution for your platform.
+  + SDL 1.2.5 is required.  SDL 2.0.x is currently unsupported/unstable.  Use
+    this URL:  http://www.libsdl.org/download-1.2.php and install the correct
+    SDL distribution for your platform.
+
+  + MESS 0.153 or later:  http://sdlmame.lngn.net.  Place in your path or in
+    this directory.
+
 
 For Windows:
 
-From the apple3rtr directory type "copy mess.ini.windows mess.ini".
+  + MESS 0.153 or later:  http://www.mamedev.org/release.html  Place in your
+    path or this directory.  NOTE:  The latest SVN Windows binaries can be had
+    from emucr.com.
+
+  + From the apple3rtr directory type "copy mess.ini.windows mess.ini".
 
 
 
 * COLD BOOTING
 
-NOTE:  Windows users type "mess" instead of "./mess64".
+NOTE:  Windows users type "mess" or "mess64" instead of "./mess64".
+
+NOTE:  OS/X, Linux users type "mess64" instead of "/.mess64" if in your path.
 
 1. Type on a single line (but do not press RETURN):
 
@@ -88,35 +99,35 @@ NOTE:  The bosboot and cmpboot images below have been modified to support
 
 + Apple /// Demo Disk:
 
-  -floppydisk1 demodisk.dsk
+  -flop1 demodisk.dsk
 
 + BOS 1.0 (2) Disk III system with Apple /// preinstalled applications on
   HDD (/BOS):
 
-  -floppydisk1 bosboot.dsk
+  -flop1 bosboot.dsk
 
 + BOS 1.0 (4) Disk III system with Apple /// preinstalled applications on
   HDD (/BOS):
 
-  -floppydisk1 bosboot4.dsk
+  -flop1 bosboot4.dsk
 
 + CP/M 2.2 (2) Disk III system with CP/M preinstalled applications on
   HDD (/BOS/CPM1 (C:)):
 
   NOTE:  A: = .D1, B: = .D2, C: = .PROFILE/.CFIDE1
 
-  -floppydisk1 cpmboot.po 
+  -flop1 cpmboot.po 
 
 + CP/M 2.2 (4) Disk III system with CP/M preinstalled applications on
   HDD (/BOS/CPM1 (E:)):
 
   NOTE:  A: = .D1, B: = .D2, C: = .D3, D: = .D4, E: = .PROFILE/.CFIDE1
 
-  -floppydisk1 cpmboot4.po 
+  -flop1 cpmboot4.po 
 
 + CFFA Utility to create or delete partitions (NOTE:  DO NOT DELETE /BOS!):
 
-  -floppydisk1 cffautil_1.40a.dsk 
+  -flop1 cffautil_1.40a.dsk 
 
 
 
@@ -208,7 +219,7 @@ http://rbelmont.mameworld.info/
 
 * TECH NOTES
 
-#1:  Using Meat-net to get data/programs in and out of the Apple ///.
+#1:  Using Meat-net to get data/programs in and out of the Apple ///:
 
 Getting things in and out of the Apple /// has to be done with floppy images.
 There are many applications that can manipulate Apple /// SOS and CP/M floppy
@@ -223,7 +234,7 @@ DOS order images should be suffixed with .do or .dsk.  ProDOS ordered diskimage
 should be siffixed with .po.  The incorrect suffix will confuse MESS.
 
 
-#2:  Fortran HOW-TO
+#2:  Fortran /// HOW-TO:
 
 1.  Launch Pascal ///, edit and save your program, e.g. /HOME/HELLO.F
 2.  From Pascal ///, X)ecute /BOS/FORTRAN/FORTRAN OR launch Fortran /// from
@@ -231,6 +242,43 @@ should be siffixed with .po.  The incorrect suffix will confuse MESS.
 3.  Follow the prompts, e.g. /HOME/HELLO.F, /HOME/HELLO
 4.  From System Utilities copy /BOS/FORTRAM/SYSTEM.LIBRARY to /HOME/HELLO.LIB
 5.  From Pascal ///, X)ecute /HOME/HELLO
+
+
+#3:  Get "online" with Access /// HOW-TO:
+
+The MESS 0.153 Apple /// driver now inlcudes RS-232 support.  To enable, append
+-rs232 null_modem -bitb <target> where <target> is a filename (for printer
+output, e.g. printer.txt) or a socket description (socket.host:port) for TCP-
+based bidirectional null-modem access, e.g. socket.127.0.0.1:2023.
+
+As with physical null-modem serial-to-serial communications it is necessary to
+match the baud (300, 600, 1200, 2400, 4800, 9600) and protocol (8-N-1 only
+available) on both ends.  For the MESS end of the null-modem connection this
+can be accomplished via the Bitbanger Control menu in the UI Menu.  The default
+is 9600, 8-N-1.  For the Apple /// end, the settings my be available in the
+application (e.g. Access ///) or may require a change to the .RS232 driver
+configuration block via the System Configuration Program (SCP).  See the "Apple
+/// Standard Device Drivers Manual" for more details.
+
+Examples:
+
++ /bin/bash access from Access ///:
+
+1.  Install socat
+2.  Type:
+
+    socat tcp-l:2023,reuseaddr,fork exec:/bin/bash,pty,setsid,setpgid,stderr,ctty &
+
+3.  Append to MESS command line: 
+
+    -rs232 null_modem -bitb socket.127.0.0.1:2023
+
+
++ Printer output:
+
+1.  Append to MESS command line: 
+
+    -rs232 null_modem -bitb printer.txt
 
 
 
@@ -269,6 +317,18 @@ v1.6:  * Added Access /// 1.1
        * Added CP/M DBaseII 2.3B (/BOS/CPM1, C: or E:)
        * Added CP/M WordStar 3.0 (/BOS/CPM1, C: or E:)
        * Added artwork/Scanlines* and updated command to utilize.  Much better!
+
+v1.7:  * Updated command line to use shorter options.
+       * Added boot command for OS/X and Linux users (sorry Windows), to use
+         type: ./boot bos|cpm 2|4 [drive system], e.g.:
+           ./boot bos 2
+           ./boot bos 4
+           ./boot cpm 2
+           ./boot cpm 4
+       * Updated OS/X mess64 with rs232 support.  Windowers check emucr.com.
+       * Updated default bosboot.dsk and bosboot4.dsk .RS232 driver to 9600 8N1
+         for use with -rs232 null_modem -bitb options.
+       * Added "Generic Serial (.RS232)" printer to /// E-Z Pieces.
 
 
 
