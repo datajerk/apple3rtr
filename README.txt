@@ -1,4 +1,5 @@
-Apple /// Ready-to-Run README v1.4 (See CHANGE LOG at end of document)
+Apple /// Ready-to-Run README v1.5 (See CHANGE LOG at end of document)
+
 
 
 * WHAT'S IN THE BOX?
@@ -7,7 +8,7 @@ Apple /// Ready-to-Run README v1.4 (See CHANGE LOG at end of document)
     2 MHz 6502
     512K RAM Expansion
 (1) Internal Floppy Drive
-(3) External Floppy Drives (but you'll only ever need one, see HDD below)
+(3) External Floppy Drives
 (1) CFFA2 Mass Storage Adapter in Slot 1
 (1) 46 MB Internal Hard Disk Drive (HDD) Partitioned into:
     (2) 16MB Partitions:
@@ -25,21 +26,24 @@ There will be a *free* upgrade in the future.
 
 
 
-* PREINSTALLED SOFTWARE on HDD
+* PREINSTALLED SOFTWARE ON HDD
 
 + BOS 1.0, the *most* advanced Apple /// Operating System
   + BOS Program Switcher
   + BOS Utilities
 + SOS 1.3 System Utilities
 + Backup ///
++ Lazarus ///
++ ADTPro 1.2.9 (BOS Menu Screen #2)
 + Apple Writer ///
-+ Draw ON ///
 + VisiCalc Advanced
 + /// E-Z Pieces
 + Quick File ///
-+ Apple /// COBOL
++ Draw ON ///
 + Apple /// Business Basic
 + Apple /// Pascal 1.1
++ Apple /// Fortran
++ Apple /// COBOL
 + CP/M 2.2 (2 MB Virtual HDD (C: or E:) as file /BOS/CPM1)
   + Turbo Pascal 3.01a
   + Zork I: The Great Underground Empire
@@ -58,7 +62,7 @@ distribution for your platform.
 
 For Windows:
 
-From the apple3rtr director type "copy mess.ini.windows mess.ini".
+From the apple3rtr directory type "copy mess.ini.windows mess.ini".
 
 
 
@@ -66,7 +70,7 @@ From the apple3rtr director type "copy mess.ini.windows mess.ini".
 
 NOTE:  Windows users type "mess" instead of "./mess64".
 
-1. Simply type on a single line (but do not press RETURN):
+1. Type on a single line (but do not press RETURN):
 
 ./mess64 apple3 -skip_gameinfo -volume -24 -resolution 800x600 -sl1 cffa2 -hard apple3.hd -sl2 applicard -ramsize 512k
 
@@ -76,38 +80,38 @@ NOTE:  Adjust -volume and -resolution to your taste.  Volume 0 is the loudest.
 2. Append to the command line above one of the following floppy images and
 *then* press RETURN:
 
-NOTE:  The bosboot and cmpboot images below have been modified to support the
-       CFFA2 adapter.
+NOTE:  The bosboot and cmpboot images below have been modified to support
+       the CFFA2 adapter.
 
-Apple /// Demo Disk:
++ Apple /// Demo Disk:
 
   -floppydisk1 demodisk.dsk
 
-BOS 1.0 (2) Disk III system with Apple /// preinstalled applications on
-HDD (/BOS):
++ BOS 1.0 (2) Disk III system with Apple /// preinstalled applications on
+  HDD (/BOS):
 
   -floppydisk1 bosboot.dsk
 
-BOS 1.0 (4) Disk III system with Apple /// preinstalled applications on
-HDD (/BOS):
++ BOS 1.0 (4) Disk III system with Apple /// preinstalled applications on
+  HDD (/BOS):
 
   -floppydisk1 bosboot4.dsk
 
-CP/M 2.2 (2) Disk III system with CP/M preinstalled applications on
-HDD (/BOS/CPM1 (C:)):
++ CP/M 2.2 (2) Disk III system with CP/M preinstalled applications on
+  HDD (/BOS/CPM1 (C:)):
 
-NOTE:  A: = .D1, B: = .D2, C: = .PROFILE/.CFIDE1
+  NOTE:  A: = .D1, B: = .D2, C: = .PROFILE/.CFIDE1
 
   -floppydisk1 cpmboot.po 
 
-CP/M 2.2 (4) Disk III system with CP/M preinstalled applications on
-HDD (/BOS/CPM1 (E:)):
++ CP/M 2.2 (4) Disk III system with CP/M preinstalled applications on
+  HDD (/BOS/CPM1 (E:)):
 
-NOTE:  A: = .D1, B: = .D2, C: = .D3, D: = .D4, E: = .PROFILE/.CFIDE1
+  NOTE:  A: = .D1, B: = .D2, C: = .D3, D: = .D4, E: = .PROFILE/.CFIDE1
 
   -floppydisk1 cpmboot4.po 
 
-CFFA Utility to create or delete partitions (NOTE:  DO NOT DELETE /BOS!):
++ CFFA Utility to create or delete partitions (NOTE:  DO NOT DELETE /BOS!):
 
   -floppydisk1 cffautil_1.40a.dsk 
 
@@ -216,6 +220,16 @@ DOS order images should be suffixed with .do or .dsk.  ProDOS ordered diskimage
 should be siffixed with .po.  The incorrect suffix will confuse MESS.
 
 
+#2:  Fortran HOW-TO
+
+1.  Launch Pascal ///, edit and save your program, e.g. /HOME/HELLO.F
+2.  From Pascal ///, X)ecute /BOS/FORTRAN/FORTRAN OR launch Fortran /// from
+    the BOS Menu.
+3.  Follow the prompts, e.g. /HOME/HELLO.F, /HOME/HELLO
+4.  From System Utilities copy /BOS/FORTRAM/SYSTEM.LIBRARY to /HOME/HELLO.LIB
+5.  From Pascal ///, X)ecute /HOME/HELLO
+
+
 
 * CHANGE LOG
 
@@ -243,6 +257,10 @@ v1.4:  * Added MORE INFO ABOUT MESS APPLE /// section
        * Added cpmboot4.dsk.  Chaged System Parameters "Number of Disk III
          Drives" from 2 to 4.  Now .D3 and .D4 work as C: and D:, HD
          (/BOS/CPM1) is now E:.
+
+v1.5:  * Added Lazarus ///
+       * Added ADTPro 1.2.9
+       * Added Apple /// Fortran (/BOS/FORTRAN)
 
 
 
