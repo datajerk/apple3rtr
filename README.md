@@ -35,6 +35,11 @@
 
 Apple /// Ready-to-Run is a bundle of support files, docs, and scripts for MESS Apple /// emulation (<http://www.mess.org/>).  Included is an HDD image with many popular Apple /// titles (source: <http://apple3.org>) preinstalled so that you can get started with your own virtual Apple /// as quickly as possible.
 
+## Version
+
+Version 2.0, released Nov 23 2014
+
+
 ## What's in the Box
 
 * Apple /// Computer
