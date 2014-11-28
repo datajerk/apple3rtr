@@ -548,7 +548,8 @@ The MESS 0.155 Apple /// driver now inlcudes analog joystick support.
 Tested analog sticks:  
 
 - Classic Apple II joysticks with the following adapter:
-  <https://www.tindie.com/products/option8/retroconnector-joystick-shield/>
+  <https://www.tindie.com/products/option8/retroconnector-joystick-shield/> (OS/X tested)
+- Sony PlayStation DUALSHOCK 3 Wireless Controller (OS/X tested)
 - Xbox 360
 
 Nothing is required except to connect your joystick *before launching MESS*.  Use the *Analog Controls* menu from the *UI Menu* to adjust the center and sensitivity as necessary.
