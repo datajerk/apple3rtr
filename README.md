@@ -168,8 +168,9 @@ This document assumes that all work will be in the `apple3rtr` directory.
 1. Type on a single line (***but do not press RETURN--yet***):
 
 	```
-mess64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k
-```
+	mess64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k
+	```
+
 > Adjust `-volume` and `-resolution` to your taste.  Volume 0 is the loudest.
 <br><br>`-effect Scanlines0x4` is optional and only optimized for 1024x768.
 <br><br>Smaller scanline options:  `-resolution 768x576 -effect Scanlines75x3`
