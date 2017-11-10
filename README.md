@@ -5,10 +5,10 @@
   - [Preinstalled Software on HDD](#preinstalled-software-on-hdd)
 - [Installation](#installation)
 - [SDL and MESS Installation](#sdl-and-mess-installation)
-  - [OS/X](#osx)
+  - [OSX](#osx)
   - [Windows](#windows)
   - [Linux](#linux)
-  - [Roll Your Own (assumes OS/X or Linux)](#roll-your-own-assumes-osx-or-linux)
+  - [Roll Your Own (assumes OSX or Linux)](#roll-your-own-assumes-osx-or-linux)
 - [Cold Booting](#cold-booting)
 - [How to Operate Your Virtual Apple ///](#how-to-operate-your-virtual-apple-)
 - [Known Issues](#known-issues)
@@ -27,7 +27,7 @@
   - [Joystick](#joystick)
   - [Numeric Pad](#numeric-pad)
   - [Boot from VSDRIVE](#boot-from-vsdrive)
-- [Using the boot Script (OS/X and Linux only)](#using-the-boot-script-osx-and-linux-only)
+- [Using the boot Script (OSX and Linux only)](#using-the-boot-script-osx-and-linux-only)
 - [Changelog](Changelog.md)
 
 
@@ -104,28 +104,28 @@ Download <https://github.com/datajerk/apple3rtr/archive/master.zip> and extract 
 This document assumes that all work will be in the `apple3rtr` directory.
 
 
-# SDL and MESS Installation
+# SDL and MAME Installation
 
 
-## OS/X
+## OSX
 
 + SDL 2.x is required (<http://www.libsdl.org/download-2.0.php>)
 
 	> Open `SDL2-2.x.x.dmg` and drag `SDL2.framework` to `/Library/Frameworks`
 
-+ SDLMESS 64-bit 0.155 or later:  <http://sdlmame.lngn.net>
++ SDLMAME 64-bit 0.155 or later:  <http://sdlmame.lngn.net>
 
 	> Extract and place in your path or in the `apple3rtr` directory.
 
   E.g.:
 	```
 	cd apple3rtr
-	curl http://sdlmame.lngn.net/mess0155-64bit.zip >mess0155-64bit.zip
-	unzip mess0155-64bit.zip
-	cd mess0155-64bit
+	curl http://sdlmame.lngn.net/mame0191-64bit.zip > mame0191-64bit.zip
+	unzip mame0191-64bit.zip
+	cd mame0191-64bit
 	cp -a * ..
 	cd ..
-	rm -rf mess0155-64bit*
+	rm -rf mame0191-64bit*
 	```	
 
 
@@ -146,7 +146,7 @@ This document assumes that all work will be in the `apple3rtr` directory.
 + Varies depending on distribution.  SDL 2.x and MESS 0.155 or later required.
 
 
-## Roll Your Own (assumes OS/X or Linux)
+## Roll Your Own (assumes OSX or Linux)
 
 + Install SDL 2.x.x development libraries (<http://www.libsdl.org/download-2.0.php>)
 
@@ -163,12 +163,12 @@ This document assumes that all work will be in the `apple3rtr` directory.
 
 > If `mess64` is not in your path, then provide the full path name to `mess64`.
 
-> OS/X and Linux users, if `mess64` is in `apple3rtr` then type `./mess64`.
+> OSX and Linux users, if `mame64` is in `apple3rtr` then type `./mame64`.
 
 1. Type on a single line (***but do not press RETURN--yet***):
 
 	```
-	mess64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k
+	mame64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k
 	```
 
 > Adjust `-volume` and `-resolution` to your taste.  Volume 0 is the loudest.
@@ -210,7 +210,7 @@ The default for MESS is to use the `INSERT` key to toggle *PARTIAL/FULL Emulatio
 
 To address the aforementioned the *PARTIAL/FULL Emulation* mode, toggle has been mapped to the `F1` key, and the *UI Menu* to the `F2` key.
 
-> OS/X users: If you have `F1`/`F2` set to control brightness (default OS/X behavior) then use `fn-F1` and `fn-F2` for `F1` and `F2` anytime you are instructed to use `F1` or `F2`.
+> OSX users: If you have `F1`/`F2` set to control brightness (default OSX behavior) then use `fn-F1` and `fn-F2` for `F1` and `F2` anytime you are instructed to use `F1` or `F2`.
 
 To remove or insert a virtual floppy press `F1` to engage *PARTIAL Emulation* mode, then immediately press `F2` to access the *UI Menu*.
 
@@ -259,7 +259,7 @@ Getting things in and out of the Apple /// can be done with comm programs (see [
 
 For SOS, AppleCommander works very well: <http://applecommander.sourceforge.net>.  CiderPress for Windows/WINE also works: <http://ciderpress.sourceforge.net>.
 
-For CP/M, use CPMTools (<http://www.moria.de/~michael/cpmtools/>) with a format type of `apple-do` for DOS and `apple-po` for ProDOS ordered disk images.  OS/X users will need to install the CLI development tools to build.  Windows users can download Bill Buckels binaries from <http://www.cpm8680.com/cpmtools>.
+For CP/M, use CPMTools (<http://www.moria.de/~michael/cpmtools/>) with a format type of `apple-do` for DOS and `apple-po` for ProDOS ordered disk images.  OSX users will need to install the CLI development tools to build.  Windows users can download Bill Buckels binaries from <http://www.cpm8680.com/cpmtools>.
 
 DOS order images should be suffixed with `.do` or `.dsk`, and ProDOS/SOS ordered disk images should be suffixed with `.po`.  The incorrect suffix will confuse MESS.
 
@@ -316,25 +316,25 @@ Video demo: <https://www.youtube.com/watch?v=GuVev9AYGIc>
 
 VSDRIVE (Virtual Serial Drive) is an RS-232-based virtual drive hosted by a Mac or PC running ADTPro in *localhost* mode.  Before continuing please read <http://adtpro.sourceforge.net/vdrive.html> to familiarize yourself with VSDRIVE.
 
-VSDRIVE is a built-in feature of ADTPro.  Only ADTPro-2.0.0 (<http://sourceforge.net/projects/adtpro/files/adtpro/ADTPro-2.0.0>) has been tested and is included with this distribution.
+VSDRIVE is a built-in feature of ADTPro.  Only ADTPro-2.0.2 (<http://sourceforge.net/projects/adtpro/files/adtpro/ADTPro-2.0.2>) has been tested and is included with this distribution.
 
-In the `disks` subdirectory of the included ADTPro-2.0.0 there are two zip files, `v800k.zip` and `v16m.zip`, containing two files, `Virtual.po` and `Virtual2.po`.  The sizes are 800K and 16M respectively.  You can replace them with any size ProDOS formatted volume as long as the volume is < 16MB (max recognized by SOS) and the names unchanged.  You can create new virtual disks with AppleCommander (<http://applecommander.sourceforge.net/>) or CiderPress (<http://ciderpress.sourceforge.net/>).
+In the `disks` subdirectory of the included ADTPro-2.0.2 there are two zip files, `v800k.zip` and `v16m.zip`, containing two files, `Virtual.po` and `Virtual2.po`.  The sizes are 800K and 16M respectively.  You can replace them with any size ProDOS formatted volume as long as the volume is < 16MB (max recognized by SOS) and the names unchanged.  You can create new virtual disks with AppleCommander (<http://applecommander.sourceforge.net/>) or CiderPress (<http://ciderpress.sourceforge.net/>).
 
 > < 16MB is 32767 sectors (max).  The provided 16MB images are 32767 sectors.
 
 To start VSDRIVE:
 
-1.  Type: `cd ADTPro-2.0.0/disks`
+1.  Type: `cd ADTPro-2.0.2/disks`
 2.  Unzip `v800k.zip` for two 800K virtual disks or unzip `v16m.zip` for two 16M virtual disks.
-    > OS/X and Linux users can type `unzip` *filename.zip*.
+    > OSX and Linux users can type `unzip` *filename.zip*.
     
 3.  Type: `cd ..`
-4.  Type: `./adtpro.sh localhost &` (OS/X, Linux) or `adtpro localhost` (PC).
+4.  Type: `./adtpro.sh localhost &` (OSX, Linux) or `adtpro localhost` (PC).
 5.  Type: `cd ..`
 
 To use VSDRIVE standalone, append to the MESS command line:
 
-`-flop1 VDRIVE-2.0.0.DSK -rs232 null_modem -bitb socket.127.0.0.1:1977`
+`-flop1 VDRIVE-2.0.2.DSK -rs232 null_modem -bitb socket.127.0.0.1:1977`
 
 To use VSDRIVE with BOS, CFFA2, etc..., append to the MESS command line:
 
@@ -344,11 +344,11 @@ To use VSDRIVE with BOS, CFFA2, etc..., append to the MESS command line:
 
 > If MESS crashes while starting with `-rs232 null_modem -bitb socket...`, then wait 30 seconds and try again.
 
-The 16M `Virtual.po` and `Virtual2.po` will be mounted as `/V` and `/V2` respectively. The 800K `Virtual.po` and `Virtual2.po` will be mounted as `/VDRIVE.2.0.0` and `/VDRIVE2.2.0.0` respectively. Alternatively, `.VSDRIVE` and `.VSDRIVE2` can be used.
+The 16M `Virtual.po` and `Virtual2.po` will be mounted as `/V` and `/V2` respectively. The 800K `Virtual.po` and `Virtual2.po` will be mounted as `/VDRIVE.2.0.2` and `/VDRIVE2.2.0.2` respectively. Alternatively, `.VSDRIVE` and `.VSDRIVE2` can be used.
 
 > The bosboot VSDRIVE disks have `.RS232` and `.PRINTER` removed.  Serial printing and other non-VSDRIVE serial functions will be unavailable.
 
-To use VSDRIVE with any other boot disks, use the *System Configuration Program* (SCP) to add the driver `VSDRIVE.A3DRVR` from `VDRIVE-2.0.0.DSK`.  See the *Apple /// Standard Device Drivers Manual* for more details.
+To use VSDRIVE with any other boot disks, use the *System Configuration Program* (SCP) to add the driver `VSDRIVE.A3DRVR` from `VDRIVE-2.0.2.DSK`.  See the *Apple /// Standard Device Drivers Manual* for more details.
 
 VSDRIVE performs slower than the CFFA2.  The intended purpose is for large scale transfers *the Apple /// way*.  Advanced users will want to use the direct methods below.
 
@@ -442,7 +442,7 @@ Prerequisites:
 
 1.  ***CLEARLY UNDERSTAND*** [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) (above).
 
-2.  Download and install CPMTools (<http://www.moria.de/~michael/cpmtools/>). OS/X users will need to install the CLI development tools to build. Windows users can download Bill Buckels binaries: <http://www.cpm8680.com/cpmtools>.
+2.  Download and install CPMTools (<http://www.moria.de/~michael/cpmtools/>). OSX users will need to install the CLI development tools to build. Windows users can download Bill Buckels binaries: <http://www.cpm8680.com/cpmtools>.
 
 3.  Edit CPMTools `diskdefs` and append:
 	```
@@ -474,7 +474,7 @@ Prerequisites:
 
     A.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) and extract `bos.po`.
 
-    B.  Using AppleCommander or CiderPress extract `CPM1`, e.g. OS/X:
+    B.  Using AppleCommander or CiderPress extract `CPM1`, e.g. OSX:
     
         alias applecmd='java -jar /Applications/AppleCommander.app/Contents/Resources/Java/AppleCommander.jar'
         applecmd -g bos.po cpm1 >CPM1
@@ -500,7 +500,7 @@ Remove or Write/Update files to `CPM1`, type:
 
 Updating `bos.po` with `CPM1`:
 
-1.  Use AppleCommander or CiderPress to remove the old CPM1 and replace it with the new `CPM1`, e.g. OS/X:
+1.  Use AppleCommander or CiderPress to remove the old CPM1 and replace it with the new `CPM1`, e.g. OSX:
 	```
 	applecmd -d bos.po CPM1
 	applecmd -p bos.po CPM1 PDA <CPM1
@@ -549,8 +549,8 @@ The MESS 0.155 Apple /// driver now inlcudes analog joystick support.
 Tested analog sticks:  
 
 - Classic Apple II joysticks with the following adapter:
-  <https://www.tindie.com/products/option8/retroconnector-joystick-shield/> (OS/X tested)
-- Sony PlayStation DUALSHOCK 3 Wireless Controller (OS/X tested)
+  <https://www.tindie.com/products/option8/retroconnector-joystick-shield/> (OSX tested)
+- Sony PlayStation DUALSHOCK 3 Wireless Controller (OSX tested)
 - Xbox 360
 
 Nothing is required except to connect your joystick *before launching MESS*.  Use the *Analog Controls* menu from the *UI Menu* to adjust the center and sensitivity as necessary.
@@ -562,7 +562,7 @@ Video demo: <https://www.youtube.com/watch?v=W9pj7LUF6g8>
 
 No mystery here, but there are some applications that require a numeric keypad. E.g. Draw ON ///.
 
-The following has been tested with OS/X MESS:
+The following has been tested with OSX MESS:
 
 - Belkin YourType Bluetooth Wireless Keypad:
   (<http://www.belkin.com/us/p/P-F8T067/>)
@@ -578,15 +578,15 @@ To make the switch from CFFA to VSDRIVE:
 
 1.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) to extract `bos.po` and `home.po`.
 
-2.  Move `bos.po` and `home.po` to `ADTPro-2.0.0/disks` as `Virtual.po` and `Virtual2.po`,
+2.  Move `bos.po` and `home.po` to `ADTPro-2.0.2/disks` as `Virtual.po` and `Virtual2.po`,
     e.g. type:
     ```
-    mv bos.po ADTPro-2.0.0/disks/Virtual.po
-    mv home.po ADTPro-2.0.0/disks/Virtual2.po
+    mv bos.po ADTPro-2.0.2/disks/Virtual.po
+    mv home.po ADTPro-2.0.2/disks/Virtual2.po
     ```
 3.  Start ADTPro Server, type:
     ```
-    cd ADTPro-2.0.0
+    cd ADTPro-2.0.2
     Mac/Linux: ./adtpro.sh localhost &
     Windows: adtpro localhost
 	cd ..
@@ -602,7 +602,7 @@ To make the switch from CFFA to VSDRIVE:
 > Not 100% stable.  YMMV.
 
 
-# Using the boot Script (OS/X and Linux only)
+# Using the boot Script (OSX and Linux only)
 
 If typing long command lines is too unpleasant for you, then consider using the `boot` script included with this distribution.  `boot` provides an easy way to launch MESS Apple /// emulation with most of the aforementioned options listed in this document.  `boot` will also attempt to coordinate the launching of other required services, e.g. `socat` and ADTPro.
 
@@ -648,7 +648,7 @@ mess64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard apple3.hd -sl2 thclock
 You can modify the behavior with the options listed above.  E.g. say you wanted to use BOS with VSDRIVE, simply type `./boot -a -r vsd vsd`, e.g.:
 ```
 $ ./boot -a -r vsd vsd
-ADTPro Server version 2.0.0
+ADTPro Server version 2.0.2
 
 Running... mess64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k -resolution 768x576 -effect Scanlines75x3 -flop1 bosbootvsd.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977
 ```
