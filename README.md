@@ -37,7 +37,7 @@ Apple /// Ready-to-Run is a bundle of support files, docs, and scripts for MESS 
 
 ## Version
 
-Version 2.0, released Nov 23 2014
+Version 2.1, released Nov 11 2017
 
 
 ## What's in the Box
