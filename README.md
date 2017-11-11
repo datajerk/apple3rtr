@@ -255,7 +255,7 @@ To power down your Apple ///:  Quit any applications, and then select *Quit* fro
 
 ## Using Meat-net to get data/programs in and out of the Apple ///
 
-Getting things in and out of the Apple /// can be done with comm programs (see [Get "online" with Access ///](#get-online-with-access-)), VSDRIVE (see [VSDRIVE](#vsdrive)), or by direct manipulation of apple3.hd (see [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd)).  However, using floppy images is probably the easiest and most strait forward.
+Getting things in and out of the Apple /// can be done with comm programs (see [Get "online" with Access ///](#get-online-with-access-)), VSDRIVE (see [VSDRIVE](#vsdrive)), or by direct manipulation of apple3.hd (see [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd)).  However, using floppy images is probably the easiest and most straightforward.
 
 For SOS, AppleCommander works very well: <http://applecommander.sourceforge.net>.  CiderPress for Windows/WINE also works: <http://ciderpress.sourceforge.net>.
 
