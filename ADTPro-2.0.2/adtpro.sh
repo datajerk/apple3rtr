@@ -76,4 +76,4 @@ if [ "$1x" = "headlessx" ]; then
 fi
 
 cd "$ADTPRO_HOME"/disks
-$HEADLESS"$MY_JAVA_HOME"java -Xms256m -Xmx512m "$TWEAK" $ADTPRO_EXTRA_JAVA_PARMS -cp ../lib/ADTPro-2.0.0.jar:../"$RXTXLIB"/../RXTXcomm.jar:../lib/AppleCommander/AppleCommander-1.3.5.13-ac.jar org.adtpro.ADTPro $*
+$HEADLESS"$MY_JAVA_HOME"java -Xms256m -Xmx512m "$TWEAK" $ADTPRO_EXTRA_JAVA_PARMS -cp ../lib/ADTPro-2.0.2.jar:../"$RXTXLIB"/../RXTXcomm.jar:../lib/AppleCommander/AppleCommander-1.3.5.13-ac.jar org.adtpro.ADTPro $*
