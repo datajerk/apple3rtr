@@ -144,3 +144,9 @@ runable `access.3270.dsk`.
 - Removed "TECH TIP" labels, just titles with TOC now.
 - Rewrote much of `README` and moved it to `README.md` to prepare to dump on github.
 
+## v2.1
+
+- Updated ADTPro to 2.0.02
+- Updated OSX Mess to 0191
+- Minor cleanup
+
