@@ -36,6 +36,5 @@ set ADTPRO_CLASSPATH_SET=1
 PATH=%PATH%;%ADTPRO_HOME%lib\rxtx\%RXTX_ARCH%
 
 :start
-CD "%ADTPRO_HOME%disks"
-start /min %MY_JAVA_HOME%java -Xms128m -Xmx256m %ADTPRO_EXTRA_JAVA_PARMS% -cp "%ADTPRO_HOME%lib\ADTPro-2.0.2.jar";"%ADTPRO_HOME%lib\rxtx\%RXTX_PATH%\RXTXcomm.jar";"%ADTPRO_HOME%lib\AppleCommander\AppleCommander-1.3.5.13-ac.jar" org.adtpro.ADTPro %*
-CD "%CWD%"
+CD "%ADTPRO_HOME%"
+start /min %MY_JAVA_HOME%java -Xms128m -Xmx256m %ADTPRO_EXTRA_JAVA_PARMS% -cp "%ADTPRO_HOME%lib\ADTPro-2.0.3.jar";"%ADTPRO_HOME%lib\rxtx\%RXTX_PATH%\RXTXcomm.jar";"%ADTPRO_HOME%lib\AppleCommander\AppleCommander-1.3.5.13-ac.jar" org.adtpro.ADTPro %*
