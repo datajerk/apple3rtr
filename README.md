@@ -314,17 +314,17 @@ Video demo: <https://www.youtube.com/watch?v=GuVev9AYGIc>
 
 ## VSDRIVE
 
-VSDRIVE (Virtual Serial Drive) is an RS-232-based virtual drive hosted by a Mac or PC running ADTPro in *localhost* mode.  Before continuing please read <http://adtpro.sourceforge.net/vdrive.html> to familiarize yourself with VSDRIVE.
+VSDRIVE (Virtual Serial Drive) is an RS-232-based virtual drive hosted by a Mac or PC running ADTPro in *localhost* mode.  Before continuing please read <http://adtpro.com/vdrive.html> to familiarize yourself with VSDRIVE.
 
-VSDRIVE is a built-in feature of ADTPro.  Only ADTPro-2.0.2 (<http://sourceforge.net/projects/adtpro/files/adtpro/ADTPro-2.0.2>) has been tested and is included with this distribution.
+VSDRIVE is a built-in feature of ADTPro.  ADTPro-2.0.3 (<http://adtpro.com/download.html>) has been tested and is included with this distribution.
 
-In the `disks` subdirectory of the included ADTPro-2.0.2 there are two zip files, `v800k.zip` and `v16m.zip`, containing two files, `Virtual.po` and `Virtual2.po`.  The sizes are 800K and 16M respectively.  You can replace them with any size ProDOS formatted volume as long as the volume is < 16MB (max recognized by SOS) and the names unchanged.  You can create new virtual disks with AppleCommander (<http://applecommander.sourceforge.net/>) or CiderPress (<http://ciderpress.sourceforge.net/>).
+In the `disks` subdirectory of the included ADTPro-2.0.3 there are two zip files, `v800k.zip` and `v16m.zip`, containing two files, `Virtual.po` and `Virtual2.po`.  The sizes are 800K and 16M respectively.  You can replace them with any size ProDOS formatted volume as long as the volume is < 16MB (max recognized by SOS) and the names unchanged.  You can create new virtual disks with AppleCommander (<http://applecommander.sourceforge.net/>) or CiderPress (<http://ciderpress.sourceforge.net/>).
 
 > < 16MB is 32767 sectors (max).  The provided 16MB images are 32767 sectors.
 
 To start VSDRIVE:
 
-1.  Type: `cd ADTPro-2.0.2/disks`
+1.  Type: `cd ADTPro-2.0.3/disks`
 2.  Unzip `v800k.zip` for two 800K virtual disks or unzip `v16m.zip` for two 16M virtual disks.
     > OSX and Linux users can type `unzip` *filename.zip*.
     
@@ -334,7 +334,7 @@ To start VSDRIVE:
 
 To use VSDRIVE standalone, append to the MESS command line:
 
-`-flop1 VDRIVE-2.0.2.DSK -rs232 null_modem -bitb socket.127.0.0.1:1977`
+`-flop1 VDRIVE-2.0.3.DSK -rs232 null_modem -bitb socket.127.0.0.1:1977`
 
 To use VSDRIVE with BOS, CFFA2, etc..., append to the MESS command line:
 
@@ -344,11 +344,11 @@ To use VSDRIVE with BOS, CFFA2, etc..., append to the MESS command line:
 
 > If MESS crashes while starting with `-rs232 null_modem -bitb socket...`, then wait 30 seconds and try again.
 
-The 16M `Virtual.po` and `Virtual2.po` will be mounted as `/V` and `/V2` respectively. The 800K `Virtual.po` and `Virtual2.po` will be mounted as `/VDRIVE.2.0.2` and `/VDRIVE2.2.0.2` respectively. Alternatively, `.VSDRIVE` and `.VSDRIVE2` can be used.
+The 16M `Virtual.po` and `Virtual2.po` will be mounted as `/V` and `/V2` respectively. The 800K `Virtual.po` and `Virtual2.po` will be mounted as `/VDRIVE.2.0.3` and `/VDRIVE2.2.0.3` respectively. Alternatively, `.VSDRIVE` and `.VSDRIVE2` can be used.
 
 > The bosboot VSDRIVE disks have `.RS232` and `.PRINTER` removed.  Serial printing and other non-VSDRIVE serial functions will be unavailable.
 
-To use VSDRIVE with any other boot disks, use the *System Configuration Program* (SCP) to add the driver `VSDRIVE.A3DRVR` from `VDRIVE-2.0.2.DSK`.  See the *Apple /// Standard Device Drivers Manual* for more details.
+To use VSDRIVE with any other boot disks, use the *System Configuration Program* (SCP) to add the driver `VSDRIVE.A3DRVR` from `VDRIVE-2.0.3.DSK`.  See the *Apple /// Standard Device Drivers Manual* for more details.
 
 VSDRIVE performs slower than the CFFA2.  The intended purpose is for large scale transfers *the Apple /// way*.  Advanced users will want to use the direct methods below.
 
@@ -578,15 +578,15 @@ To make the switch from CFFA to VSDRIVE:
 
 1.  Follow [Directly Manipulating apple3.hd](#directly-manipulating-apple3hd) to extract `bos.po` and `home.po`.
 
-2.  Move `bos.po` and `home.po` to `ADTPro-2.0.2/disks` as `Virtual.po` and `Virtual2.po`,
+2.  Move `bos.po` and `home.po` to `ADTPro-2.0.3/disks` as `Virtual.po` and `Virtual2.po`,
     e.g. type:
     ```
-    mv bos.po ADTPro-2.0.2/disks/Virtual.po
-    mv home.po ADTPro-2.0.2/disks/Virtual2.po
+    mv bos.po ADTPro-2.0.3/disks/Virtual.po
+    mv home.po ADTPro-2.0.3/disks/Virtual2.po
     ```
 3.  Start ADTPro Server, type:
     ```
-    cd ADTPro-2.0.2
+    cd ADTPro-2.0.3
     Mac/Linux: ./adtpro.sh localhost &
     Windows: adtpro localhost
 	cd ..
@@ -648,7 +648,7 @@ mess64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard apple3.hd -sl2 thclock
 You can modify the behavior with the options listed above.  E.g. say you wanted to use BOS with VSDRIVE, simply type `./boot -a -r vsd vsd`, e.g.:
 ```
 $ ./boot -a -r vsd vsd
-ADTPro Server version 2.0.2
+ADTPro Server version 2.0.3
 
 Running... mess64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k -resolution 768x576 -effect Scanlines75x3 -flop1 bosbootvsd.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977
 ```
