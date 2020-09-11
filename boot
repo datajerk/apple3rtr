@@ -47,16 +47,16 @@ countdown() {
 	done
 }
 
-CMD=mess64
-if [ -x mess64 ]
+CMD=mame64
+if [ -x mame64 ]
 then
-	CMD=./mess64
+	CMD=./mame64
 fi
 
 PTV=""
-SIZE="-resolution 768x576 -effect Scanlines75x3"
-HD="-sl1 cffa2 -hard apple3.hd"
-ADTV=2.0.0
+SIZE="-resolution 768x576 -effect Scanlines75x3 -window"
+HD="-sl1 cffa2 -hard1 apple3.hd -bios original"
+ADTV=2.0.3
 PORT_OVERRIDE=0
 LAUNCH_ADT=0
 LAUNCH_SOCAT=0
@@ -70,13 +70,13 @@ while getopts "hsmlr:o:acn" opt; do
 			exit 0
 			;;
 		s)
-			SIZE="-resolution 512x384 -effect Scanlines75x2"
+			SIZE="-resolution 512x384 -effect Scanlines75x2 -window"
 			;;
 		m)
-			SIZE="-resolution 768x576 -effect Scanlines75x3"
+			SIZE="-resolution 768x576 -effect Scanlines75x3 -window"
 			;;
 		l)
-			SIZE="-resolution 1024x768 -effect Scanlines0x4"
+			SIZE="-resolution 1024x768 -effect Scanlines0x4 -window"
 			;;
 		r)
 			SERIAL=$OPTARG
@@ -248,4 +248,3 @@ if (( LAUNCH_SOCAT == 1 ))
 then
 	kill $SOCAT_PID
 fi
-
