@@ -678,7 +678,7 @@ The rest of the options should be fairly straightforward.
 `-sl4`
 
 # Available "cards":
-`cffa2` - CFFA2000 Compact Flash for Apple II (www.dreher.net), 6502 firmware
+`cffa2` - CFFA 2.0 Compact Flash for Apple II (www.dreher.net), 6502 firmware
 `applicard` - PCPI Applicard
 `thclock` - ThunderWare ThunderClock Plus - driver assumes slot 2 by default
 `mouse` - Apple II Mouse Card
