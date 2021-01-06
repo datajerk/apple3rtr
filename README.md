@@ -4,7 +4,7 @@
   - [What's in the Box](#whats-in-the-box)
   - [Preinstalled Software on HDD](#preinstalled-software-on-hdd)
 - [Installation](#installation)
-- [SDL and MESS Installation](#sdl-and-mess-installation)
+- [SDL and MESS Installation](#sdl-and-mame-installation)
   - [OSX](#osx)
   - [Windows](#windows)
   - [Linux](#linux)
@@ -13,7 +13,7 @@
 - [How to Operate Your Virtual Apple ///](#how-to-operate-your-virtual-apple-)
 - [Known Issues](#known-issues)
 - [Support](#support)
-- [More Info About MESS Apple ///](#more-info-about-mess-apple-)
+- [More Info About MESS Apple ///](#more-info-about-mame-apple-)
 - [Advanced HOW-TOs](#advanced-how-tos)
   - [Using Meat-net to get data/programs in and out of the Apple ///](#using-meat-net-to-get-dataprograms-in-and-out-of-the-apple-)
   - [Fortran /// Q&D](#fortran--qd)
@@ -33,7 +33,7 @@
 
 # Introduction
 
-Apple /// Ready-to-Run is a bundle of support files, docs, and scripts for MESS Apple /// emulation (<http://www.mess.org/>).  Included is an HDD image with many popular Apple /// titles (source: <http://apple3.org>) preinstalled so that you can get started with your own virtual Apple /// as quickly as possible.
+Apple /// Ready-to-Run is a bundle of support files, docs, and scripts for MAME Apple /// emulation (<https://www.mamedev.org/>).  Included is an HDD image with many popular Apple /// titles (source: <http://apple3.org>) preinstalled so that you can get started with your own virtual Apple /// as quickly as possible.
 
 ## Version
 
@@ -111,7 +111,7 @@ This document assumes that all work will be in the `apple3rtr` directory.
 
 + SDL 2.x is required (<http://www.libsdl.org/download-2.0.php>)
 
-	> Open `SDL2-2.x.x.dmg` and drag `SDL2.framework` to `/Library/Frameworks`
+	> Open `SDL2-2.x.x.dmg` and drag `SDL2.framework` to `/Library/Frameworks`; you will need to enter an administrator user name and password
 
 + SDLMAME 64-bit 0.155 or later:  <http://sdlmame.lngn.net>
 
@@ -120,12 +120,12 @@ This document assumes that all work will be in the `apple3rtr` directory.
   E.g.:
 	```
 	cd apple3rtr
-	curl http://sdlmame.lngn.net/mame0191-64bit.zip > mame0191-64bit.zip
-	unzip mame0191-64bit.zip
-	cd mame0191-64bit
+	curl https://sdlmame.lngn.net/mame0224-64bit.zip > mame0224-64bit.zip
+	unzip mame0224-64bit.zip
+	cd mame0224-64bit
 	cp -a * ..
 	cd ..
-	rm -rf mame0191-64bit*
+	rm -rf mame0224-64bit*
 	```	
 
 
@@ -161,14 +161,14 @@ This document assumes that all work will be in the `apple3rtr` directory.
 
 # Cold Booting
 
-> If `mess64` is not in your path, then provide the full path name to `mess64`.
+> Windows users, If `mame64` is not in your path, then provide the full path name to `mame64`.
 
 > OSX and Linux users, if `mame64` is in `apple3rtr` then type `./mame64`.
 
 1. Type on a single line (***but do not press RETURN--yet***):
 
 	```
-	mame64 apple3 -skip_gameinfo -volume -24 -resolution 1024x768 -effect Scanlines0x4 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k
+	mame64 apple3 -skip_gameinfo -volume -24 -window -resolution 1024x768 -bios original -sl1 cffa2 -hard1 apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k
 	```
 
 > Adjust `-volume` and `-resolution` to your taste.  Volume 0 is the loudest.
@@ -227,7 +227,7 @@ In summary:
 
 To power down your Apple ///:  Quit any applications, and then select *Quit* from the BOS Program Switcher.  If using CP/M, just quit your application first.  For any other single disk application, just quit.  Now you are ready to power down.  To power down press `F1` (`fn-F1`) to enter *PARTIAL Emulation* mode, then press `ESC` to shutdown.
 
-> While in *PARTIAL Emulation* mode many of the other keys on the keyboard will be setup to perform other functions, e.g. *P* will PAUSE the Apple ///.  Refer to the MESS documentation (<http://www.mess.org/mess/howto#using_mess>) *and be careful!*
+> While in *PARTIAL Emulation* mode many of the other keys on the keyboard will be setup to perform other functions, e.g. *P* will PAUSE the Apple ///.  Refer to the MAME documentation (<https://docs.mamedev.org/usingmame/defaultkeys.html>) *and be careful!*
 
 
 # Known Issues
@@ -237,7 +237,7 @@ To power down your Apple ///:  Quit any applications, and then select *Quit* fro
 
 # Support
 
-* RTFMs: <http://apple3.org> and <http://www.mess.org/mess/howto>.
+* RTFMs: <http://apple3.org> and <https://docs.mamedev.org/usingmame/index.html>.
 
 * Join and post a message to the Apple /// Facebook group (<https://www.facebook.com/groups/appleiii/>).
 
@@ -246,9 +246,9 @@ To power down your Apple ///:  Quit any applications, and then select *Quit* fro
 * Post an issue on Github (<https://github.com/datajerk/apple3rtr/issues>).
 
 
-# More Info About MESS Apple ///
+# More Info About MAME Apple ///
 
-<http://rbelmont.mameworld.info/>
+<https://rbelmont.mameworld.info/>
 
 
 # Advanced HOW-TOs
@@ -597,14 +597,14 @@ To make the switch from CFFA to VSDRIVE:
 	```	
 	> ***IMPORTANT:  THE BPS RATE MUST BE SET TO 115K.  You've got about 5 seconds to set it on boot, however after setting the first time MESS will remember.***
 
-> ADTPro must be restarted anytime there is an out-of-band, i.e. direct manipulation of `Virtual.po` or `Virtual2.po`.  IOW, shutdown MESS, then ADTPro before changing `Virtual.po` or `Virtual2.po`.
+> ADTPro must be restarted anytime there is an out-of-band, i.e. direct manipulation of `Virtual.po` or `Virtual2.po`.  IOW, shut down MAME, then ADTPro before changing `Virtual.po` or `Virtual2.po`.
 
 > Not 100% stable.  YMMV.
 
 
 # Using the boot Script (OSX and Linux only)
 
-If typing long command lines is too unpleasant for you, then consider using the `boot` script included with this distribution.  `boot` provides an easy way to launch MESS Apple /// emulation with most of the aforementioned options listed in this document.  `boot` will also attempt to coordinate the launching of other required services, e.g. `socat` and ADTPro.
+If typing long command lines is too unpleasant for you, then consider using the `boot` script included with this distribution.  `boot` provides an easy way to launch MAME Apple /// emulation with most of the aforementioned options listed in this document.  `boot` will also attempt to coordinate the launching of other required services, e.g. `socat` and ADTPro.
 
 > `boot` has not been agressively tested.  YMMV.
 
@@ -640,7 +640,7 @@ diskimage1 (and only diskimage1) may use the following optional aliases:
 
 Most users will just run `./boot bos`.  This will boot up a virtual Apple /// using the following command:
 ```
-mess64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k -resolution 768x576 -effect Scanlines75x3 -flop1 bosboot.dsk
+mame64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard1 apple3.hd -bios original -sl2 thclock -sl3 applicard -ramsize 512k -resolution 768x576 -effect Scanlines75x3 -window -flop1 bosboot.dsk
 ```
 
 `bos` is an alias for `bosboot.dsk`, other aliases are listed for your reference when invoking `./boot` without any parameters.  You can of course supply any diskette image name, as well as the names for diskette images you'll like inserted in to virtual floppy drives `.D2`, `.D3`, and `.D4`.
@@ -650,13 +650,13 @@ You can modify the behavior with the options listed above.  E.g. say you wanted 
 $ ./boot -a -r vsd vsd
 ADTPro Server version 2.0.3
 
-Running... mess64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard apple3.hd -sl2 thclock -sl3 applicard -ramsize 512k -resolution 768x576 -effect Scanlines75x3 -flop1 bosbootvsd.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977
+Running... ./mame64 apple3 -skip_gameinfo -volume -24 -sl1 cffa2 -hard1 apple3.hd -bios original -sl2 thclock -sl3 applicard -ramsize 512k -resolution 768x576 -effect Scanlines75x3 -window -flop1 bosbootvsd.dsk -rs232 null_modem -bitb socket.127.0.0.1:1977
 ```
-This command will launch ADTPro and connect MESS to it for VSDRIVE support from BOS.  MESS will also be configured for 115K BPS serial speeds.  After exiting MESS, ADTPro will be shutdown.
+This command will launch ADTPro and connect MAME to it for VSDRIVE support from BOS.  MAME will also be configured for 115K BPS serial speeds.  After exiting MAME, ADTPro will be shut down.
 
 > You must have `Virtual.po` and `Virtual2.po` prepared first.  If not setup, then ADTPro will create two blank 800K disk images.
 
-The rest of the options should be fairly strait forward.
+The rest of the options should be fairly straightforward.
 
 * `-s`, `-m`, `-l` are essentially *small*, *medium*, *large* display sizes (see the `boot` help output for the exact sizes).  The default is *medium*.
 
@@ -664,12 +664,29 @@ The rest of the options should be fairly strait forward.
 
 * If you are having problem with TCP sockets taking a long time to time out you can override the port number with `-o` *port number*.  A port number of `0` (e.g. `-o 0`) will generate a random port using the range 1000-1999.  `-o` requires `-r`.
 
-* `-a` will launch ADTPro and configure it to listen to the port specified by `-r` and `-o`.  `-a` and `-c` are mutually exclusive.  ADTPro will be killed when MESS exits.
+* `-a` will launch ADTPro and configure it to listen to the port specified by `-r` and `-o`.  `-a` and `-c` are mutually exclusive.  ADTPro will be killed when MAME exits.
 
-* `-c` will launch `socat` and configure it to listen to the port specified by `-r` and `-o`.  `-c` and `-a` are mutually exclusive.  `socat` will be killed when MESS exits.
+* `-c` will launch `socat` and configure it to listen to the port specified by `-r` and `-o`.  `-c` and `-a` are mutually exclusive.  `socat` will be killed when MAME exits.
 	> It is not necessary to use `-a` or `-c` if you launch the services yourself.
 	
 * `-n` will not use the CFFA adapter excluding the use of `apple3.hd`
 
+# Available "slots" - append with a "card" below:
+`-sl1`
+`-sl2`
+`-sl3`
+`-sl4`
 
+# Available "cards":
+`cffa2` - CFFA 2.0 Compact Flash for Apple II (www.dreher.net), 6502 firmware
+`applicard` - PCPI Applicard
+`thclock` - ThunderWare ThunderClock Plus - driver assumes slot 2 by default
+`mouse` - Apple II Mouse Card
+`focusdrive` - Focus Drive IDE card
+`cmsscsi` - CMS Apple II SCSI Card
 
+# Available floppy drives:
+`-flop1 <disk_image_name>` 
+`-flop2 <disk_image_name>` 
+`-flop3 <disk_image_name>` 
+`-flop4 <disk_image_name>` 
