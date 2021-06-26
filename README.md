@@ -120,12 +120,12 @@ This document assumes that all work will be in the `apple3rtr` directory.
   E.g.:
 	```
 	cd apple3rtr
-	curl https://sdlmame.lngn.net/mame0224-64bit.zip > mame0224-64bit.zip
-	unzip mame0224-64bit.zip
-	cd mame0224-64bit
+	curl https://sdlmame.lngn.net/mame0232-x86.zip > mame0232-x86.zip
+	unzip mame0232-x86.zip
+	cd mame0232-x86
 	cp -a * ..
 	cd ..
-	rm -rf mame0224-64bit*
+	rm -rf mame0232-x86*
 	```	
 
 
