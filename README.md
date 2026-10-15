@@ -672,21 +672,21 @@ The rest of the options should be fairly straightforward.
 * `-n` will not use the CFFA adapter excluding the use of `apple3.hd`
 
 # Available "slots" - append with a "card" below:
-`-sl1`
-`-sl2`
-`-sl3`
-`-sl4`
+* `-sl1`
+* `-sl2`
+* `-sl3`
+* `-sl4`
 
 # Available "cards":
-`cffa2` - CFFA 2.0 Compact Flash for Apple II (www.dreher.net), 6502 firmware
-`applicard` - PCPI Applicard
-`thclock` - ThunderWare ThunderClock Plus - driver assumes slot 2 by default
-`mouse` - Apple II Mouse Card
-`focusdrive` - Focus Drive IDE card
-`cmsscsi` - CMS Apple II SCSI Card
+* `cffa2` - CFFA 2.0 Compact Flash for Apple II (www.dreher.net), 6502 firmware
+* `applicard` - PCPI Applicard
+* `thclock` - ThunderWare ThunderClock Plus - driver assumes slot 2 by default
+* `mouse` - Apple II Mouse Card
+* `focusdrive` - Focus Drive IDE card
+* `cmsscsi` - CMS Apple II SCSI Card
 
 # Available floppy drives:
-`-flop1 <disk_image_name>` 
-`-flop2 <disk_image_name>` 
-`-flop3 <disk_image_name>` 
-`-flop4 <disk_image_name>` 
+* `-flop1 <disk_image_name>` 
+* `-flop2 <disk_image_name>` 
+* `-flop3 <disk_image_name>` 
+* `-flop4 <disk_image_name>` 
